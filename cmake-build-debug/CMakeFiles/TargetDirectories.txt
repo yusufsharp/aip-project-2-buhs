@@ -1,0 +1,3 @@
+C:/Users/zxces/CLionProjects/aip-project-2-buhs/cmake-build-debug/CMakeFiles/aip_project_2_buhs.dir
+C:/Users/zxces/CLionProjects/aip-project-2-buhs/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/zxces/CLionProjects/aip-project-2-buhs/cmake-build-debug/CMakeFiles/rebuild_cache.dir
