@@ -1,13 +1,14 @@
 //
 // Created by yusufsharp on 21.03.2024.
 //
-
+#pragma once
 #ifndef AIP_PROJECT_2_BUHS_NEURAL_NET_H
 #define AIP_PROJECT_2_BUHS_NEURAL_NET_H
 
 #include <vector>
 #include <random>
 #include <cmath>
+#include <iostream>
 
 struct WeightDW{
     double w;
@@ -39,7 +40,7 @@ public:
     void function_calculates_grads_for_hiddens(const std::vector<Neuron> & layer_plus_1_i);
     //не константа из-за изменений
     void update_weights(std::vector<Neuron> & layer_minus_1) const;
-
+    void get_weights() const;
 };
 
 class NeuralNet {
@@ -54,7 +55,7 @@ public:
 
     void backward_step(const std::vector<double> &targets);
 
-    void eval_net(std::vector<double> &values) const;
+    void eval_net() const;
 };
 
 
