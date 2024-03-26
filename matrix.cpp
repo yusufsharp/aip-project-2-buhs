@@ -128,3 +128,60 @@ std::vector<double> Matrix::sumVecs(std::vector<double> vec1, std::vector<double
     }
     return vec3;
 }
+
+std::vector<double> Matrix::subVecs(std::vector<double> vec1, std::vector<double> vec2){
+    std::vector<double> vec3(vec1.size(), 0.0);
+    for (size_t i = 0; i < vec1.size(); ++i) {
+        vec3[i] = vec1[i] - vec2[i];
+    }
+    return vec3;
+}
+
+double Matrix::dotprodVecs(std::vector<double> vec1, std::vector<double> vec2){
+    double sum = 0.0;
+    for (size_t i = 0; i < vec1.size(); ++i) {
+        sum += vec1[i] * vec2[i];
+    }
+    return sum;
+}
+
+std::vector<double> Matrix::eachmulVecs(std::vector<double> vec1, std::vector<double> vec2){
+    std::vector<double> vec3(vec1.size(), 0.0);
+    for (size_t i = 0; i < vec1.size(); ++i) {
+        vec3[i] = vec1[i] * vec2[i];
+    }
+    return vec3;
+}
+
+Matrix Matrix::ij_mul(std::vector<double> vec1, std::vector<double> vec2){
+    const size_t & n = vec1.size();
+    const size_t & m = vec2.size();
+    Matrix res(n, m);
+    for (size_t i = 0; i < n; ++i) {
+        for(size_t j = 0; j < m; ++j){
+            res.setElement(i, j, vec1[i]*vec2[j]);
+        }
+    }
+    return res;
+}
+
+//пока что реализация для конкретной функции активации
+
+Matrix Matrix::scalarMul(double coeff) const{
+    Matrix result(getRows(), getCols());
+    for (size_t i = 0; i < getRows(); ++i) {
+        for (size_t j = 0; j < getCols(); ++j) {
+            result.setElement(i, j, getElement(i, j) * coeff);
+        }
+    }
+    return result;
+}
+// можно перегрузить операторы с кайфом так-то но это как нибудь потом(кровью)
+
+std::vector<double> Matrix::scalarMulVec(const std::vector<double> & vec, double coeff){
+    std::vector<double> result(vec.size(), 0.0);
+    for (double i : vec) {
+        result.push_back(i * coeff);
+    }
+    return result;
+}

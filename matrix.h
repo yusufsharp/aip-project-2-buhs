@@ -19,14 +19,21 @@ public:
     void printMatrix() const;
     [[nodiscard]] static double genRandom();
     static std::vector<double> sumVecs(std::vector<double> vec1, std::vector<double> vec2);
+    static std::vector<double> subVecs(std::vector<double> vec1, std::vector<double> vec2);
+    static std::vector<double> eachmulVecs(std::vector<double> vec1, std::vector<double> vec2);
+    static double dotprodVecs(std::vector<double> vec1, std::vector<double> vec2);
+    static Matrix ij_mul(std::vector<double> vec1, std::vector<double> vec2);
     [[nodiscard]] size_t getRows() const;
     [[nodiscard]] size_t getCols() const;
     [[nodiscard]] Matrix t() const;
     [[nodiscard]] double getElement(size_t row, size_t col) const;
     [[nodiscard]] Matrix add(const Matrix& other) const;
+    [[nodiscard]] Matrix scalarMul(double coeff) const;
     [[nodiscard]] Matrix dot(const Matrix& other) const;
     [[nodiscard]] Matrix eachMul(const Matrix& other) const;
     [[nodiscard]] std::vector<double> dotVector(const std::vector<double>& vec) const;
+    static std::vector<double> scalarMulVec(const std::vector<double> & vec, double coeff) ;
+
 private:
     std::vector<std::vector<double>> data;
 };
