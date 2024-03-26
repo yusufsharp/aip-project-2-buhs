@@ -58,7 +58,9 @@ public:
     void eval_net() const;
 };
 
+class ConvLayer {
 
+};
 
 
 
