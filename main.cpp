@@ -21,10 +21,13 @@ int main() {
 //    for (const double &i : result) {
 //        std::cout << i << ' ';
 //    }
-    TensorsNet aboba({2, 3, 5, 4});
+    TensorsNet aboba({2, 1024, 100, 50, 10, 3});
+    //aboba.addConvLayer(5, 3);
+    //прямой проход конволюции я пока не проверял (он не работает)
+    //обратный проход конволюции тоже (его нет)
     for (int i = 0; i < 100; ++i) {
         aboba.forwardPass({0.1, 0.2});
-        aboba.backwardPass({0.6, 0.7, 0.8, 0.9}, 0.05, 0.5);
+        aboba.backwardPass({0.6, 0.7, 0.2}, 1, 0.5);
     }
     return 0;
 }

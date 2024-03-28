@@ -185,3 +185,30 @@ std::vector<double> Matrix::scalarMulVec(const std::vector<double> & vec, double
     }
     return result;
 }
+
+double Matrix::convDot(size_t i1, size_t i2, size_t j1, size_t j2, Matrix weights, double bias) const{
+    double sum = 0;
+    for(size_t i = i1; i <= i2; ++i){
+        for(size_t j = j1; j <= j2; ++j){
+            sum += getElement(i, j) * weights.getElement(i, j);
+        }
+    }
+    sum += bias;
+    return sum;
+}
+
+Matrix Matrix::vecReshape(std::vector<double> vec, size_t size){
+    if(size*size != vec.size()){
+        std::cout << "Vector couldn't be reshaped." << '\n';
+        return {0, 0};
+    }
+    Matrix M(size, size);
+    size_t cnt = 0;
+    for (size_t i = 0; i < size; ++i) {
+        for (size_t j = 0; j < size; ++j) {
+            M.setElement(i, j, vec[cnt]);
+            cnt++;
+        }
+    }
+    return M;
+}

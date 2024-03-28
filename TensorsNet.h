@@ -15,6 +15,7 @@ struct Layer{
     std::vector<double> output_values;
     std::vector<double> grads;
     std::vector<double> input_values;
+    size_t layer_type;
 };
 
 
@@ -23,6 +24,9 @@ public:
     explicit TensorsNet(const std::vector<size_t> & all_layers);
     void forwardPass(const std::vector<double> & inputs);
     void backwardPass(const std::vector<double> & outputs,  double  lr, double moment);
+    void addConvLayer(size_t num_filter, size_t filters_size);
+    void addLayer(size_t num_input, size_t num_output, size_t layer_type);
+    void convForward(const std::vector<double> &inputs, size_t conv_index);
 private:
     //с учетом фильтра
     std::vector<std::vector<Layer>> graph;

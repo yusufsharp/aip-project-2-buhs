@@ -9,24 +9,26 @@
 
 TensorsNet::TensorsNet(const std::vector<size_t> & all_layers){
     for (size_t l = 0; l < all_layers.size() - 1; ++l) {
-
-        Matrix M(all_layers[l+1], all_layers[l]);
         graph.emplace_back().emplace_back();
-        graph.back().back().weights = M;
-        graph.back().back().d_weights = M;
-        for (int i = 0; i < all_layers[l+1]; ++i) {
-            for (int j = 0; j < all_layers[l]; ++j) {
-                graph.back().back().weights.setElement(i, j, Matrix::genRandom());
-            }
-            graph.back().back().biases.push_back(Matrix::genRandom());
-            graph.back().back().d_biases.push_back(Matrix::genRandom());
-            graph.back().back().grads.push_back(0);
-            graph.back().back().output_values.push_back(0);
-            graph.back().back().grads.push_back(0);
-        }
-
+        TensorsNet::addLayer(all_layers[l], all_layers[l+1], 0);
     }
 };
+
+void TensorsNet::addLayer(size_t num_input, size_t num_output, size_t layer_type){
+    Matrix M(num_output, num_input);
+    graph.back().back().weights = M;
+    graph.back().back().d_weights = M;
+    for (int i = 0; i < num_output; ++i) {
+        for (int j = 0; j < num_input; ++j) {
+            graph.back().back().weights.setElement(i, j, Matrix::genRandom());
+        }
+        graph.back().back().biases.push_back(Matrix::genRandom());
+        graph.back().back().d_biases.push_back(Matrix::genRandom());
+        graph.back().back().output_values.push_back(0);
+        graph.back().back().layer_type = layer_type;
+    }
+}
+
 
 void TensorsNet::forwardPass(const std::vector<double> &inputs) {
     // МЫ НЕ СОХРАНЯЕМ ВХОДНЫЕ ЗНАЧЕНИЯ!!!!!!!!!
@@ -44,21 +46,24 @@ void TensorsNet::forwardPass(const std::vector<double> &inputs) {
 
 void TensorsNet::relu_function(std::vector<double> &nonactive){
     for (double & elm : nonactive) {
-        if(elm <= 0){
-            elm = 0;
-        }
+//        if(elm <= 0){
+//            elm = 0;
+//        }
+        elm = 1.0 / (1.0 + std::exp(-elm));
     }
 }
 
 std::vector<double> TensorsNet::relu_function_derived(const std::vector<double> &nonderived){
     std::vector<double> res;
     for (const double & elm : nonderived) {
-        if(elm <= 0){
-            res.push_back(0);
-        }
-        else{
-            res.push_back(1);
-        }
+//        if(elm <= 0){
+//            res.push_back(0);
+//        }
+//        else{
+//            res.push_back(1);
+//        }
+        double temp = 1.0 / (1.0 + std::exp(-elm));
+        res.push_back(temp * (1.0 - temp));
     }
     return res;
 }
@@ -83,13 +88,36 @@ void TensorsNet::backwardPass(const std::vector<double> &outputs, double lr, dou
         std::vector<double> db = Matrix::scalarMulVec(graph[i][0].d_biases, moment);
         graph[i][0].d_biases = Matrix::sumVecs(b, db);
         graph[i][0].biases = Matrix::sumVecs(graph[i][0].d_biases, graph[i][0].biases);
-
-
-
     }
     for(const double & i : graph.back().back().output_values){
         std::cout << i << ' ';
     }
     std::cout << '\n';
-
 }
+//каким образом создать сеть непосредственно с конволюции?
+void TensorsNet::addConvLayer(size_t num_filter, size_t filters_size) {
+    graph.emplace_back();
+    for (size_t j = 0; j < num_filter; ++j) {
+        graph.back().emplace_back();
+        TensorsNet::addLayer(filters_size, filters_size, 1);
+    }
+}
+
+//при обратном проходе конволюции учесть что я в ините тупанул и перепутал строки со столбцами
+
+void TensorsNet::convForward(const std::vector<double> &inputs, size_t conv_index){
+    size_t num_filters = graph[conv_index].size();
+    size_t filter_size = graph[conv_index][0].weights.getRows();
+    for(size_t i = 0; i < num_filters; ++i){
+        graph[conv_index][i].input_values = inputs; //??? можно ли не учитывать
+        auto img_shape = static_cast<size_t>(std::sqrt(inputs.size()));
+        Matrix img = Matrix::vecReshape(graph[conv_index][i].input_values, img_shape);
+        for (size_t j = 0; j < (img_shape - filter_size); ++j) {
+            for (size_t k = 0; k < (img_shape - filter_size); ++k) {
+                graph[conv_index][i].output_values.push_back(img.convDot(j, j + filter_size-1, k, k+filter_size-1,
+                        graph[conv_index][i].weights, graph[conv_index][i].biases[0]));
+            }
+        }
+    }
+}
+//для прямого прохода нужно сделать reshape нейронов. upd: сделал
