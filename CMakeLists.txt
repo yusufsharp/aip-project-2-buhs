@@ -7,4 +7,6 @@ add_executable(aip_project_2_buhs main.cpp
         neural_net.cpp
         neural_net.h
         program.cpp
-        program.h)
+        program.h
+        data_reader.cpp
+        data_reader.h)

@@ -3,6 +3,10 @@
 #include "program.h"
 #include "matrix.h"
 #include "TensorsNet.h"
+#include "data_reader.h"
+
+
+
 int main() {
 
 //    Matrix A(2, 3);
@@ -21,11 +25,26 @@ int main() {
 //    for (const double &i : result) {
 //        std::cout << i << ' ';
 //    }
-    TensorsNet aboba({2, 3, 5, 4});
-    for (int i = 0; i < 100; ++i) {
-        aboba.forwardPass({0.1, 0.2});
-        aboba.backwardPass({0.6, 0.7, 0.8, 0.9}, 0.05, 0.5);
-    }
+
+//    TensorsNet aboba({2, 3, 5, 4});
+//    for (int i = 0; i < 100; ++i) {
+//       aboba.forwardPass({0.1, 0.2});
+//        aboba.backwardPass({0.6, 0.7, 0.8, 0.9}, 0.05, 0.5);
+//    }
+
+    std::string filename = "../data/train-images.idx3-ubyte";
+    std::vector<std::vector<unsigned char>> images = readImageFile(filename);
+    NormalizeData(images);
+
+    std::string labelFilename = "../data/train-labels.idx1-ubyte";
+    std::vector<unsigned char> labels = readLabelFile(labelFilename);
+
+    int sideLength = 28;
+
+    // Выводим первое изображение в консоль, сделав его квадратным
+    printImage(images[0], sideLength);
+    std::cout << "Label: " << static_cast<int>(labels[0]) << std::endl;
+
     return 0;
 }
 
@@ -39,4 +58,4 @@ int main() {
 //        aboba.backward_step({0.423, 0.95, 0.185});
 //    }
 //
-//    //aboba.eval_net();
+//    aboba.eval_net();
