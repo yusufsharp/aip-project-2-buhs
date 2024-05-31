@@ -7,24 +7,25 @@
 //необходимо также сделать матрицу, внутри которой функция
 
 Matrix::Matrix() = default;
-Matrix::Matrix(size_t rows, size_t cols) : data(rows, std::vector<double>(cols, 0.0)){}
+
+Matrix::Matrix(size_t rows, size_t cols) : data(rows, std::vector<double>(cols, 0.0)) {}
 
 size_t Matrix::getRows() const { return data.size(); }
+
 size_t Matrix::getCols() const { return data.empty() ? 0 : data[0].size(); }
 
 
 void Matrix::setElement(size_t row, size_t col, double value) {
     if (row < getRows() && col < getCols()) {
         data[row][col] = value;
-    }
-    else{
+    } else {
         std::cout << "Неверный индекс" << '\n';
     }
 }
 
 void Matrix::printMatrix() const {
-    for (const std::vector<double> & row : data) {
-        for (const double & element : row) {
+    for (const std::vector<double> &row: data) {
+        for (const double &element: row) {
             std::cout << element << " ";
         }
         std::cout << std::endl;
@@ -49,7 +50,7 @@ Matrix Matrix::t() const {
     return transposed;
 }
 
-Matrix Matrix::add(const Matrix& other) const {
+Matrix Matrix::add(const Matrix &other) const {
     if (getRows() != other.getRows() || getCols() != other.getCols()) {
         // ошибка если размеры матриц не совпадают
         return {};
@@ -64,7 +65,23 @@ Matrix Matrix::add(const Matrix& other) const {
     return result;
 }
 
-Matrix Matrix::dot(const Matrix& other) const {
+Matrix Matrix::sub(const Matrix &other) const {
+    if (getRows() != other.getRows() || getCols() != other.getCols()) {
+        // ошибка если размеры матриц не совпадают
+        return {};
+    }
+
+    Matrix result(getRows(), getCols());
+    for (size_t i = 0; i < getRows(); ++i) {
+        for (size_t j = 0; j < getCols(); ++j) {
+            result.setElement(i, j, getElement(i, j) - other.getElement(i, j));
+        }
+    }
+    return result;
+}
+
+
+Matrix Matrix::dot(const Matrix &other) const {
     if (getCols() != other.getRows()) {
         // ошибка если количество столбцов первой матрицы не равно количеству строк второй
         return {};
@@ -83,7 +100,7 @@ Matrix Matrix::dot(const Matrix& other) const {
     return result;
 }
 
-Matrix Matrix::eachMul(const Matrix& other) const{
+Matrix Matrix::eachMul(const Matrix &other) const {
     if (getRows() != other.getRows() || getCols() != other.getCols()) {
         // ошибка если размеры не равны
         return {};
@@ -98,7 +115,7 @@ Matrix Matrix::eachMul(const Matrix& other) const{
     }
 }
 
-std::vector<double> Matrix::dotVector(const std::vector<double>& vec) const {
+std::vector<double> Matrix::dotVector(const std::vector<double> &vec) const {
     if (vec.size() != getCols()) {
         // ошибка если размер вектора не соответствует количеству столбцов матрицы
         return {};
@@ -114,14 +131,14 @@ std::vector<double> Matrix::dotVector(const std::vector<double>& vec) const {
 }
 
 
-double Matrix::genRandom(){ //генерация от 0 до 1
+double Matrix::genRandom() { //генерация от 0 до 1
     static std::random_device rd;
     static std::mt19937 gen(rd());
     static std::uniform_real_distribution<> dis(-1.0, 1.0);
     return dis(gen);
 }
 
-std::vector<double> Matrix::sumVecs(std::vector<double> vec1, std::vector<double> vec2){
+std::vector<double> Matrix::sumVecs(std::vector<double> vec1, std::vector<double> vec2) {
     std::vector<double> vec3(vec1.size(), 0.0);
     for (size_t i = 0; i < vec1.size(); ++i) {
         vec3[i] = vec1[i] + vec2[i];
@@ -129,7 +146,7 @@ std::vector<double> Matrix::sumVecs(std::vector<double> vec1, std::vector<double
     return vec3;
 }
 
-std::vector<double> Matrix::subVecs(std::vector<double> vec1, std::vector<double> vec2){
+std::vector<double> Matrix::subVecs(std::vector<double> vec1, std::vector<double> vec2) {
     std::vector<double> vec3(vec1.size(), 0.0);
     for (size_t i = 0; i < vec1.size(); ++i) {
         vec3[i] = vec1[i] - vec2[i];
@@ -137,7 +154,7 @@ std::vector<double> Matrix::subVecs(std::vector<double> vec1, std::vector<double
     return vec3;
 }
 
-double Matrix::dotprodVecs(std::vector<double> vec1, std::vector<double> vec2){
+double Matrix::dotprodVecs(std::vector<double> vec1, std::vector<double> vec2) {
     double sum = 0.0;
     for (size_t i = 0; i < vec1.size(); ++i) {
         sum += vec1[i] * vec2[i];
@@ -145,7 +162,7 @@ double Matrix::dotprodVecs(std::vector<double> vec1, std::vector<double> vec2){
     return sum;
 }
 
-std::vector<double> Matrix::eachmulVecs(std::vector<double> vec1, std::vector<double> vec2){
+std::vector<double> Matrix::eachmulVecs(std::vector<double> vec1, std::vector<double> vec2) {
     std::vector<double> vec3(vec1.size(), 0.0);
     for (size_t i = 0; i < vec1.size(); ++i) {
         vec3[i] = vec1[i] * vec2[i];
@@ -153,13 +170,13 @@ std::vector<double> Matrix::eachmulVecs(std::vector<double> vec1, std::vector<do
     return vec3;
 }
 
-Matrix Matrix::ij_mul(std::vector<double> vec1, std::vector<double> vec2){
-    const size_t & n = vec1.size();
-    const size_t & m = vec2.size();
+Matrix Matrix::ij_mul(std::vector<double> vec1, std::vector<double> vec2) {
+    const size_t &n = vec1.size();
+    const size_t &m = vec2.size();
     Matrix res(n, m);
     for (size_t i = 0; i < n; ++i) {
-        for(size_t j = 0; j < m; ++j){
-            res.setElement(i, j, vec1[i]*vec2[j]);
+        for (size_t j = 0; j < m; ++j) {
+            res.setElement(i, j, vec1[i] * vec2[j]);
         }
     }
     return res;
@@ -167,7 +184,7 @@ Matrix Matrix::ij_mul(std::vector<double> vec1, std::vector<double> vec2){
 
 //пока что реализация для конкретной функции активации
 
-Matrix Matrix::scalarMul(double coeff) const{
+Matrix Matrix::scalarMul(double coeff) const {
     Matrix result(getRows(), getCols());
     for (size_t i = 0; i < getRows(); ++i) {
         for (size_t j = 0; j < getCols(); ++j) {
@@ -178,10 +195,56 @@ Matrix Matrix::scalarMul(double coeff) const{
 }
 // можно перегрузить операторы с кайфом так-то но это как нибудь потом(кровью)
 
-std::vector<double> Matrix::scalarMulVec(const std::vector<double> & vec, double coeff){
+std::vector<double> Matrix::scalarMulVec(const std::vector<double> &vec, double coeff) {
     std::vector<double> result(vec.size(), 0.0);
-    for (double i : vec) {
+    for (double i: vec) {
         result.push_back(i * coeff);
     }
     return result;
+}
+
+double Matrix::convDot(size_t i1, size_t i2, size_t j1, size_t j2, Matrix weights, double bias) const {
+    double sum = 0;
+    for (size_t i = i1; i <= i2; ++i) {
+        for (size_t j = j1; j <= j2; ++j) {
+            sum += getElement(i, j) * weights.getElement(i, j);
+        }
+    }
+    sum += bias;
+    return sum;
+}
+
+Matrix Matrix::vecReshape(std::vector<double> vec, size_t size) {
+    if (size * size != vec.size()) {
+        std::cout << "Vector couldn't be reshaped. " << vec.size() << size <<'\n';
+        return {0, 0};
+    }
+    Matrix M(size, size);
+    size_t cnt = 0;
+    for (size_t i = 0; i < size; ++i) {
+        for (size_t j = 0; j < size; ++j) {
+            M.setElement(i, j, vec[cnt]);
+            cnt++;
+        }
+    }
+    return M;
+}
+
+Matrix Matrix::mirrored(Matrix M, size_t size){
+    Matrix res(size, size);
+    for (size_t i = 0; i < (size + 1) / 2; ++i) {
+        for (size_t j = 0; j < size; ++j) {
+            // Определяем индексы элементов, которые будут заменены местами
+            size_t ni = size - 1 - i;
+            size_t nj = size - 1 - j;
+
+            if (i == ni && j > nj) {
+                break;
+            }
+
+            res.setElement(ni, nj, M.getElement(i, j));
+            res.setElement(i, j, M.getElement(ni, nj));
+        }
+    }
+    return res;
 }

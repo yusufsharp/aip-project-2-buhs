@@ -6,7 +6,6 @@
 #include "data_reader.h"
 
 
-
 int main() {
 
 //    Matrix A(2, 3);
@@ -25,7 +24,6 @@ int main() {
 //    for (const double &i : result) {
 //        std::cout << i << ' ';
 //    }
-
 //    TensorsNet aboba({2, 3, 5, 4});
 //    for (int i = 0; i < 100; ++i) {
 //       aboba.forwardPass({0.1, 0.2});
@@ -43,10 +41,37 @@ int main() {
 
     printImage(images[32000], sideLength);
     std::cout << "Label: " << static_cast<int>(labels[32000]) << std::endl;
+//    TensorsNet aboba({2, 50, 10, 3});
+//    aboba.addConvLayer(3, 2);
+//    //aboba.addConvLayer(5, 3);
+//    //прямой проход конволюции я пока не проверял (он не работает)
+//    //обратный проход конволюции тоже (его нет)
+//    for (int i = 0; i < 100; ++i) {
+//        aboba.forwardPass({0.1, 0.2});
+//        aboba.backwardPass({0.9, 0.13}, 1, 0.5);
+//    }
+
+    TensorsNet aboba;
+    aboba.addConvLayer(2, 2);
+    aboba.addLayer(2, 2, 0);
+    //aboba.addConvLayer(3, 2);
+    for(size_t i = 0; i < 100; ++i) {
+        aboba.forwardPass({0.1, 0.2, 0.3, 0.4});
+        //aboba.convForward({0}, 1);
+        aboba.backwardPass({0.7, 0.9}, 1, 0.5);
+        std::cout << "PIPA" << '\n';
+        aboba.graph[0][0].weights.printMatrix();
+        std::cout << "ZOPA" << '\n';
+    }
+
+    aboba.forwardPass({0, 0.5, 0.1, 0.3, 0.6, 0.7, -0.5, 0.9, 0.7});
+    //aboba.convForward({0}, 1);
+    aboba.backwardPass({0.8, 0.2}, 1, 1);
+
 
     return 0;
 }
-
+// d_weights, d_biases == 0?
 
 
 
