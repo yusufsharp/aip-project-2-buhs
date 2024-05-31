@@ -30,7 +30,7 @@ int main() {
 //    for (int i = 0; i < 100; ++i) {
 //       aboba.forwardPass({0.1, 0.2});
 //        aboba.backwardPass({0.6, 0.7, 0.8, 0.9}, 0.05, 0.5);
-//    }
+ //   }
 
     std::string filename = "../data/train-images.idx3-ubyte";
     std::vector<std::vector<unsigned char>> images = readImageFile(filename);
@@ -41,9 +41,8 @@ int main() {
 
     int sideLength = 28;
 
-    // Выводим первое изображение в консоль, сделав его квадратным
-    printImage(images[0], sideLength);
-    std::cout << "Label: " << static_cast<int>(labels[0]) << std::endl;
+    printImage(images[32000], sideLength);
+    std::cout << "Label: " << static_cast<int>(labels[32000]) << std::endl;
 
     return 0;
 }
