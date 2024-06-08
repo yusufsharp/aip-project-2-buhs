@@ -1,0 +1,3 @@
+/home/dima/project_cpp/aip-project-2-buhs/build/CMakeFiles/paint_app.dir
+/home/dima/project_cpp/aip-project-2-buhs/build/CMakeFiles/edit_cache.dir
+/home/dima/project_cpp/aip-project-2-buhs/build/CMakeFiles/rebuild_cache.dir

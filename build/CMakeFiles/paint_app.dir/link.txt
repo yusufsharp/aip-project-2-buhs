@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/paint_app.dir/neural_net.cpp.o CMakeFiles/paint_app.dir/program.cpp.o -o paint_app  /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.5.1 /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.5.1 /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.5.1 

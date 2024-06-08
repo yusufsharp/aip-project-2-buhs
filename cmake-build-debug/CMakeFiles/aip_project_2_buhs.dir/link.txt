@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/aip_project_2_buhs.dir/main.cpp.o CMakeFiles/aip_project_2_buhs.dir/neural_net.cpp.o CMakeFiles/aip_project_2_buhs.dir/program.cpp.o -o aip_project_2_buhs  /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.5.1 /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.5.1 /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.5.1 
