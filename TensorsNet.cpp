@@ -40,7 +40,9 @@ void TensorsNet::forwardPass(const std::vector<double> &inputs) {
     for (size_t i = 1; i < graph.size(); ++i) {
         graph[i][0].input_values = graph[i-1][0].output_values;
         graph[i][0].output_values = Matrix::sumVecs(graph[i][0].weights.dotVector(graph[i][0].input_values), graph[i][0].biases);
-        relu_function(graph[i][0].output_values);
+        if(i != graph.size() - 1) {
+            relu_function(graph[i][0].output_values);
+        }
     }
 }
 
@@ -58,10 +60,13 @@ std::vector<double> TensorsNet::relu_function_derived(const std::vector<double> 
     return res;
 }
 
+
 void TensorsNet::backwardPass(const std::vector<double> &outputs, double lr, double moment){
     const size_t & len_graph = graph.size();
-    graph[len_graph - 1][0].grads = Matrix::eachmulVecs(relu_function_derived(graph[len_graph - 1][0].output_values),
-                                                        Matrix::subVecs(outputs, graph[len_graph - 1][0].output_values));
+//    graph[len_graph - 1][0].grads = Matrix::eachmulVecs(relu_function_derived(graph[len_graph - 1][0].output_values),
+//                                                        Matrix::subVecs(outputs, graph[len_graph - 1][0].output_values));
+    graph[len_graph - 1][0].grads =
+                                                        Matrix::subVecs(outputs, graph[len_graph - 1][0].output_values);
 
     for (size_t i = len_graph - 1; i > 0; --i) {
         graph[i-1][0].grads = Matrix::eachmulVecs(relu_function_derived(graph[i-1][0].output_values),
@@ -80,6 +85,7 @@ void TensorsNet::backwardPass(const std::vector<double> &outputs, double lr, dou
         graph[i][0].biases = Matrix::sumVecs(graph[i][0].d_biases, graph[i][0].biases);
     }
     for(const double & i : graph.back().back().output_values){
+
         std::cout << i << ' ';
     }
     std::cout << '\n';

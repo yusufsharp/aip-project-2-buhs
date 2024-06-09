@@ -99,17 +99,13 @@ std::vector<std::vector<double>> readImageFile(const std::string &filename) {
     return images;
 }
 
-void printImage(const std::vector<double>& image, int sideLength) {
-    int imageSize = image.size();
-    int numRows = imageSize / sideLength;
-    int numCols = sideLength;
-
+void printImage(const std::vector<double>& image, int numRows, int numCols) {
     for (int i = 0; i < numRows; ++i) {
         for (int j = 0; j < numCols; ++j) {
-            // Выводим значение пикселя в консоль (можно в виде числа или символа)
-            std::cout << image[i * numCols + j] << " ";
+            double pixel = image[i * numCols + j];
+            char displayChar = pixel > 0.5 ? '#' : '.';
+            std::cout << displayChar;
         }
         std::cout << std::endl;
     }
-    std::cout << std::endl;
 }

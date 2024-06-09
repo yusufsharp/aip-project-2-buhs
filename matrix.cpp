@@ -179,7 +179,7 @@ Matrix Matrix::scalarMul(double coeff) const{
 // можно перегрузить операторы с кайфом так-то но это как нибудь потом(кровью)
 
 std::vector<double> Matrix::scalarMulVec(const std::vector<double> & vec, double coeff){
-    std::vector<double> result(vec.size(), 0.0);
+    std::vector<double> result;
     for (double i : vec) {
         result.push_back(i * coeff);
     }

@@ -35,7 +35,7 @@ public:
     static std::vector<double> scalarMulVec(const std::vector<double> & vec, double coeff);
     [[nodiscard]] double convDot(size_t i1, size_t i2, size_t j1, size_t j2, Matrix weights, double bias) const;
     static Matrix vecReshape(std::vector<double> vec, size_t size);
-private:
+
     std::vector<std::vector<double>> data;
 };
 
