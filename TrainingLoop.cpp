@@ -1,20 +1,10 @@
-
- //код для всех изображений
-
-
 #include <fstream>
 #include <iostream>
 #include "TrainingLoop.h"
 
-double computeLoss(const std::vector<double>& target_output, const std::vector<double>& predicted_output) {
-     double loss = 0.0;
-     for (size_t i = 0; i < target_output.size(); ++i) {
-         loss += target_output[i] * std::log(predicted_output[i] + 1e-9);
-     }
-     return -loss;
- }
 
-void trainNetwork(TensorsNet& net, const std::vector<std::vector<double>>& train_images, const std::vector<unsigned char>& train_labels, int epochs, double learning_rate, double momentum) {
+void trainNetwork(TensorsNet &net, const std::vector<std::vector<double>> &train_images,
+                  const std::vector<unsigned char> &train_labels, int epochs, double learning_rate, double momentum) {
     for (int epoch = 0; epoch < epochs; ++epoch) {
         std::cout << "Epoch: " << epoch << std::endl;
         double total_loss = 0.0;
@@ -29,23 +19,9 @@ void trainNetwork(TensorsNet& net, const std::vector<std::vector<double>>& train
             // Обратный проход
             std::cout << i << ". ";
             net.backwardPass(target_output, learning_rate, momentum);
-
-            double loss = computeLoss(train_labels[i], );
-            total_loss += loss;
-
-            std::cout << "Loss: " << loss << " Label: " << static_cast<int>(train_labels[i]) << std::endl;
-
-
-            // Можно добавить вычисление потерь для мониторинга
-            // total_loss += computeLoss(target_output, net.getOutput());  // Реализуйте эту функцию, если необходимо
-
-            // Сохраняем веса и смещения на каждой итерации (можно настроить периодичность)
-            std::string filename = "weights_epoch_" + std::to_string(epoch) + "_batch_" + std::to_string(i) + ".txt";
-            saveWeightsAndBiases(net, filename);
         }
-        // Отображение потерь для мониторинга
-        // std::cout << "Epoch " << epoch << ", Loss: " << total_loss / train_images.size() << std::endl;
     }
+    saveWeightsAndBiases(net, "../model/final_weights.txt");
 }
 
 void saveWeightsAndBiases(const TensorsNet& net, const std::string& filename) {
@@ -69,6 +45,32 @@ void saveWeightsAndBiases(const TensorsNet& net, const std::string& filename) {
     } else {
         std::cerr << "Unable to open file: " << filename << std::endl;
     }
+}
+
+void loadWeightsAndBiases(TensorsNet& net, const std::string& filename) {
+    std::ifstream file(filename);
+    if (file.is_open()) {
+        for (auto& layer : net.graph) {
+            for (auto& node : layer) {
+                for (auto& weight : node.weights.data) {
+                    for (auto& w : weight) {
+                        file >> w;
+                    }
+                }
+                for (auto& bias : node.biases) {
+                    file >> bias;
+                }
+            }
+        }
+        file.close();
+    } else {
+        std::cerr << "Unable to open file: " << filename << std::endl;
+    }
+}
+
+std::vector<double> predict(TensorsNet& net, const std::vector<double>& input_image) {
+    net.forwardPass(input_image);
+    return net.graph.back().back().output_values;
 }
 
 

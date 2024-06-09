@@ -85,7 +85,6 @@ void TensorsNet::backwardPass(const std::vector<double> &outputs, double lr, dou
         graph[i][0].biases = Matrix::sumVecs(graph[i][0].d_biases, graph[i][0].biases);
     }
     for(const double & i : graph.back().back().output_values){
-
         std::cout << i << ' ';
     }
     std::cout << '\n';
