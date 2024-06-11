@@ -5,7 +5,9 @@
 #include "TensorsNet.h"
 
 
-TensorsNet::TensorsNet(const std::vector<size_t> &all_layers) {
+
+
+TensorsNet::TensorsNet(const std::vector<size_t> & all_layers){
     for (size_t l = 0; l < all_layers.size() - 1; ++l) {
         graph.emplace_back().emplace_back();
         TensorsNet::addLayer(all_layers[l], all_layers[l + 1], 0);
@@ -46,7 +48,8 @@ void TensorsNet::forwardPass(const std::vector<double> &inputs) {
 }
 
 void TensorsNet::relu_function(std::vector<double> &nonactive) {
-    for (double &elm: nonactive) {
+
+    for (double &elm : nonactive) {
         elm = std::max(0.0, elm);
     }
 }
@@ -58,7 +61,6 @@ std::vector<double> TensorsNet::relu_function_derived(const std::vector<double> 
     }
     return res;
 }
-
 
 void TensorsNet::backwardPass(const std::vector<double> &outputs, double lr, double moment) {
     const size_t &len_graph = graph.size();
@@ -83,7 +85,7 @@ void TensorsNet::backwardPass(const std::vector<double> &outputs, double lr, dou
         graph[i][0].d_biases = Matrix::sumVecs(b, db);
         graph[i][0].biases = Matrix::sumVecs(graph[i][0].d_biases, graph[i][0].biases);
     }
-    for (const double &i: graph.back().back().output_values) {
+    for(const double & i : graph.back().back().output_values){
         std::cout << i << ' ';
     }
     std::cout << '\n';
@@ -94,5 +96,24 @@ void TensorsNet::addConvLayer(size_t num_filter, size_t filters_size) {
     for (size_t j = 0; j < num_filter; ++j) {
         graph.back().emplace_back();
         TensorsNet::addLayer(filters_size, filters_size, 1);
+    }
+}
+
+
+//при обратном проходе конволюции учесть что я в ините тупанул и перепутал строки со столбцами
+
+void TensorsNet::convForward(const std::vector<double> &inputs, size_t conv_index){
+    size_t num_filters = graph[conv_index].size();
+    size_t filter_size = graph[conv_index][0].weights.getRows();
+    for(size_t i = 0; i < num_filters; ++i){
+        graph[conv_index][i].input_values = inputs; //??? можно ли не учитывать
+        auto img_shape = static_cast<size_t>(std::sqrt(inputs.size()));
+        Matrix img = Matrix::vecReshape(graph[conv_index][i].input_values, img_shape);
+        for (size_t j = 0; j < (img_shape - filter_size); ++j) {
+            for (size_t k = 0; k < (img_shape - filter_size); ++k) {
+                graph[conv_index][i].output_values.push_back(img.convDot(j, j + filter_size-1, k, k+filter_size-1,
+                                                                         graph[conv_index][i].weights, graph[conv_index][i].biases[0]));
+            }
+        }
     }
 }

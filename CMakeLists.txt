@@ -8,8 +8,11 @@ add_executable(aip_project_2_buhs main.cpp
         neural_net.h
         program.cpp
         program.h
+        data_reader.cpp
+        data_reader.h
         TensorsNet.cpp
         TensorsNet.h
         matrix.cpp
         matrix.h
 )
+

@@ -27,8 +27,6 @@ public:
     void addConvLayer(size_t num_filter, size_t filters_size);
     void addLayer(size_t num_input, size_t num_output, size_t layer_type);
     void convForward(const std::vector<double> &inputs, size_t conv_index);
-
-//с учетом фильтра
     std::vector<std::vector<Layer>> graph;
 private:
     static void relu_function(std::vector<double> & nonactive);
