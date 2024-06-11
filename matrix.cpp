@@ -3,6 +3,9 @@
 //
 
 #include "matrix.h"
+#include <fstream>
+#include <sstream>
+#include <string>
 
 Matrix::Matrix() = default;
 Matrix::Matrix(size_t rows, size_t cols) : data(rows, std::vector<double>(cols, 0.0)){}
@@ -209,3 +212,49 @@ Matrix Matrix::vecReshape(std::vector<double> vec, size_t size) {
     }
     return M;
 }
+
+void Matrix::addVec(const std::vector<double>& rowVector) {
+    data.push_back(rowVector);
+}
+
+Matrix Matrix::readMatrix(const std::string& file_path){
+    std::ifstream file(file_path); // Открываем файл
+    if (!file.is_open()) {
+        std::cerr << "Не удалось открыть файл!" << std::endl;
+    }
+    Matrix M;
+
+    std::string line;
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        std::vector<double> row;
+        double number;
+        while (iss >> number) {
+            row.push_back(number);
+        }
+        M.addVec(row);
+    }
+
+    file.close();
+    return M;
+}
+
+std::vector<double> Matrix::readVector(const std::string& file_path){
+    std::ifstream file(file_path); // Открываем файл
+    if (!file.is_open()) {
+        std::cerr << "Не удалось открыть файл!" << std::endl;
+    }
+    std::vector<double> row;
+    std::string line;
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        double number;
+        while (iss >> number) {
+            row.push_back(number);
+        }
+    }
+
+    file.close();
+    return row;
+}
+

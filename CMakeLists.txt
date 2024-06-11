@@ -14,5 +14,8 @@ add_executable(aip_project_2_buhs main.cpp
         TensorsNet.h
         matrix.cpp
         matrix.h
+        data_reader.cpp
+        TrainingLoop.cpp
+        TrainingLoop.h
 )
 
