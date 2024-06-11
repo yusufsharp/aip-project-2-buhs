@@ -4,8 +4,6 @@
 
 #include "matrix.h"
 
-//необходимо также сделать матрицу, внутри которой функция
-
 Matrix::Matrix() = default;
 
 Matrix::Matrix(size_t rows, size_t cols) : data(rows, std::vector<double>(cols, 0.0)) {}
@@ -36,7 +34,7 @@ double Matrix::getElement(size_t row, size_t col) const {
     if (row < getRows() && col < getCols()) {
         return data[row][col];
     }
-    return 0.0; // выброс исключения в случае некорректного индекса
+    return 0.0;
 }
 
 Matrix Matrix::t() const {
@@ -46,7 +44,6 @@ Matrix Matrix::t() const {
             transposed.setElement(j, i, getElement(i, j));
         }
     }
-    //НЕ меняет исходную матрицу
     return transposed;
 }
 
@@ -64,22 +61,6 @@ Matrix Matrix::add(const Matrix &other) const {
     }
     return result;
 }
-
-Matrix Matrix::sub(const Matrix &other) const {
-    if (getRows() != other.getRows() || getCols() != other.getCols()) {
-        // ошибка если размеры матриц не совпадают
-        return {};
-    }
-
-    Matrix result(getRows(), getCols());
-    for (size_t i = 0; i < getRows(); ++i) {
-        for (size_t j = 0; j < getCols(); ++j) {
-            result.setElement(i, j, getElement(i, j) - other.getElement(i, j));
-        }
-    }
-    return result;
-}
-
 
 Matrix Matrix::dot(const Matrix &other) const {
     if (getCols() != other.getRows()) {
@@ -182,8 +163,6 @@ Matrix Matrix::ij_mul(std::vector<double> vec1, std::vector<double> vec2) {
     return res;
 }
 
-//пока что реализация для конкретной функции активации
-
 Matrix Matrix::scalarMul(double coeff) const {
     Matrix result(getRows(), getCols());
     for (size_t i = 0; i < getRows(); ++i) {
@@ -193,10 +172,9 @@ Matrix Matrix::scalarMul(double coeff) const {
     }
     return result;
 }
-// можно перегрузить операторы с кайфом так-то но это как нибудь потом(кровью)
 
 std::vector<double> Matrix::scalarMulVec(const std::vector<double> &vec, double coeff) {
-    std::vector<double> result(vec.size(), 0.0);
+    std::vector<double> result;
     for (double i: vec) {
         result.push_back(i * coeff);
     }
@@ -216,7 +194,7 @@ double Matrix::convDot(size_t i1, size_t i2, size_t j1, size_t j2, Matrix weight
 
 Matrix Matrix::vecReshape(std::vector<double> vec, size_t size) {
     if (size * size != vec.size()) {
-        std::cout << "Vector couldn't be reshaped. " << vec.size() << size <<'\n';
+        std::cout << "Vector couldn't be reshaped." << '\n';
         return {0, 0};
     }
     Matrix M(size, size);
@@ -228,23 +206,4 @@ Matrix Matrix::vecReshape(std::vector<double> vec, size_t size) {
         }
     }
     return M;
-}
-
-Matrix Matrix::mirrored(Matrix M, size_t size){
-    Matrix res(size, size);
-    for (size_t i = 0; i < (size + 1) / 2; ++i) {
-        for (size_t j = 0; j < size; ++j) {
-            // Определяем индексы элементов, которые будут заменены местами
-            size_t ni = size - 1 - i;
-            size_t nj = size - 1 - j;
-
-            if (i == ni && j > nj) {
-                break;
-            }
-
-            res.setElement(ni, nj, M.getElement(i, j));
-            res.setElement(i, j, M.getElement(ni, nj));
-        }
-    }
-    return res;
 }

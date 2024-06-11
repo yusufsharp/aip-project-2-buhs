@@ -7,4 +7,9 @@ add_executable(aip_project_2_buhs main.cpp
         neural_net.cpp
         neural_net.h
         program.cpp
-        program.h)
+        program.h
+        TensorsNet.cpp
+        TensorsNet.h
+        matrix.cpp
+        matrix.h
+)

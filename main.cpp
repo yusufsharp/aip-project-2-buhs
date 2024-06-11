@@ -36,7 +36,7 @@ int main() {
     aboba.addConvLayer(2, 2);
     aboba.addLayer(2, 2, 0);
     //aboba.addConvLayer(3, 2);
-    for(size_t i = 0; i < 100; ++i) {
+    for (size_t i = 0; i < 100; ++i) {
         aboba.forwardPass({0.1, 0.2, 0.3, 0.4});
         //aboba.convForward({0}, 1);
         aboba.backwardPass({0.7, 0.9}, 1, 0.5);
