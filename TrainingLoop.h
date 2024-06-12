@@ -10,4 +10,7 @@ void trainNetwork(TensorsNet& net, const std::vector<std::vector<double>>& train
 // Функция для сохранения весов и смещений
 void saveWeightsAndBiases(const TensorsNet& net, const std::string& filename1, const std::string& filename2);
 
+// Функция для предсказывания числа
+void predictDigit(TensorsNet& net, const std::vector<std::vector<double>>& image);
+
 #endif // TRAINING_LOOP_H

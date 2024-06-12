@@ -1,7 +1,4 @@
-
-// код для всех изображений
-
-
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include "TrainingLoop.h"
@@ -71,6 +68,34 @@ void saveWeightsAndBiases(const TensorsNet& net, const std::string& filename1, c
     }
 }
 
+
+void predictDigit(TensorsNet& net, const std::vector<std::vector<double>>& image) {
+    // Преобразуем матрицу 28x28 в одномерный вектор
+    std::vector<double> input;
+    for (const auto& row : image) {
+        input.insert(input.end(), row.begin(), row.end());
+    }
+
+    // Выполняем прямой проход
+    net.forwardPass(input);
+
+    // Получаем выходные значения
+    const std::vector<double>& output_values = net.graph.back().back().output_values;
+
+    // Ищем индекс максимального значения в выходных значениях
+    auto max_iter = std::max_element(output_values.begin(), output_values.end());
+    int predicted_digit = std::distance(output_values.begin(), max_iter);
+
+    // Выводим предсказанную цифру
+    std::cout << "Predicted digit: " << predicted_digit << std::endl;
+
+    // Также можно вывести все выходные значения для наглядности
+    std::cout << "Output values: ";
+    for (const auto& value : output_values) {
+        std::cout << value << " ";
+    }
+    std::cout << std::endl;
+}
 
 // код для одного изображения
 //#include <fstream>

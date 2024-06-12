@@ -2,6 +2,7 @@
 #include "TensorsNet.h"
 #include "TrainingLoop.h"
 #include <iostream>
+#include "predict.h"
 
 
 
@@ -26,6 +27,10 @@ int main() {
     net.graph[0][0].biases = V1;
     net.graph[1][0].weights = M2;
     net.graph[1][0].biases = V2;
+
+    std::string filename = "../drawing_28x28.txt";
+
+    predictDigit(net, filename);
 
 
 
