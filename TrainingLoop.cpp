@@ -27,38 +27,47 @@ void trainNetwork(TensorsNet& net, const std::vector<std::vector<double>>& train
             std::cout << '\n';
             std::cout << static_cast<int>(train_labels[i]) << '\n';
 
-            // Можно добавить вычисление потерь для мониторинга
-            // total_loss += computeLoss(target_output, net.getOutput());  // Реализуйте эту функцию, если необходимо
 
-            // Сохраняем веса и смещения на каждой итерации (можно настроить периодичность)
-            std::string filename = "weights_epoch_" + std::to_string(epoch) + "_batch_" + std::to_string(i) + ".txt";
-            saveWeightsAndBiases(net, filename);
         }
-        // Отображение потерь для мониторинга
-        // std::cout << "Epoch " << epoch << ", Loss: " << total_loss / train_images.size() << std::endl;
+        std::string filename1 = "../learned/weights1.txt";
+        std::string filename2 = "../learned/bias1.txt";
+        saveWeightsAndBiases(net, filename1, filename2);
+
     }
 }
 
-void saveWeightsAndBiases(const TensorsNet& net, const std::string& filename) {
-    std::ofstream file(filename);
-    if (file.is_open()) {
+void saveWeightsAndBiases(const TensorsNet& net, const std::string& filename1, const std::string& filename2) {
+    std::ofstream file1(filename1);
+    if (file1.is_open()) {
         for (const auto& layer : net.graph) {
             for (const auto& node : layer) {
                 for (const auto& weight : node.weights.data) {
                     for (const auto& w : weight) {
-                        file << w << " ";
+                        file1 << w << " ";
                     }
-                    file << std::endl;
+                    file1 << std::endl;
                 }
-                for (const auto& bias : node.biases) {
-                    file << bias << " ";
-                }
-                file << std::endl;
+                file1 << std::endl;
             }
         }
-        file.close();
+        file1.close();
     } else {
-        std::cerr << "Unable to open file: " << filename << std::endl;
+        std::cerr << "Unable to open file: " << filename1 << std::endl;
+    }
+    std::ofstream file2(filename1);
+    if (file1.is_open()) {
+        for (const auto& layer : net.graph) {
+            for (const auto& node : layer) {
+                for (const auto& bias : node.biases) {
+                    file2 << bias << " ";
+                }
+                file2 << std::endl;
+                file2 << std::endl;
+            }
+        }
+        file2.close();
+    } else {
+        std::cerr << "Unable to open file: " << filename1 << std::endl;
     }
 }
 
