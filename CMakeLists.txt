@@ -38,3 +38,8 @@ add_executable(aip_project_2_buhs main.cpp
 
 # Связывание с библиотеками SFML
 target_link_libraries(aip_project_2_buhs ${SFML_LIBRARIES})
+
+add_subdirectory(external/googletest-main)
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+
+target_link_libraries(aip_project_2_buhs gtest gtest_main)
