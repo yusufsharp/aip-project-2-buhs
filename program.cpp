@@ -253,8 +253,9 @@ void PaintApp::drawUI() {
 }
 
 // Точка входа в программу
-int main() {
+int main_program() {
     PaintApp app;
     app.run();
     return 0;
 }
+
