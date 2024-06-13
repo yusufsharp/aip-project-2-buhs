@@ -13,6 +13,6 @@ std::vector<std::vector<double>> readMatrixFromFile(const std::string& filename,
 
 std::vector<double> flattenMatrix(const std::vector<std::vector<double>>& matrix);
 
-void predictDigit(TensorsNet& net, const std::string& filename);
+int predictDigit(TensorsNet& net, const std::string& filename);
 
 #endif //AIP_PROJECT_2_BUHS_PREDICT_H

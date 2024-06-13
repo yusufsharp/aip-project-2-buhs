@@ -34,7 +34,7 @@ std::vector<double> flattenMatrix(const std::vector<std::vector<double>>& matrix
     return flat_matrix;
 }
 
-void predictDigit(TensorsNet& net, const std::string& filename) {
+int predictDigit(TensorsNet& net, const std::string& filename) {
     // Step 1: Read the matrix from the file
     std::vector<std::vector<double>> matrix = readMatrixFromFile(filename, 28, 28);
 
@@ -50,4 +50,5 @@ void predictDigit(TensorsNet& net, const std::string& filename) {
 
     // Print the predicted digit
     std::cout << "Predicted Digit: " << predicted_digit << std::endl;
+    return predicted_digit;
 }

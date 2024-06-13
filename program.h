@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "TensorsNet.h" // Для использования нейросети
+#include "predict.h"
 
 class PaintApp {
 public:
@@ -19,7 +21,7 @@ private:
     void clearCanvas();
     sf::Image captureCanvas();
     sf::Image resizeImage(const sf::Image& image, unsigned int width, unsigned int height);
-    void saveImageAsText(const sf::Image& image, const std::string& filename); // Прототип новой функции
+    void saveImageAsText(const sf::Image& image, const std::string& filename);
     void drawUI();
 
     sf::RenderWindow window;
@@ -40,6 +42,8 @@ private:
     sf::Texture pencilTexture;
     sf::Sprite pencilSprite;
     float lineWidth;
+
+    TensorsNet net; // Нейронная сеть для предсказаний
 };
 
 #endif // PROGRAM_H

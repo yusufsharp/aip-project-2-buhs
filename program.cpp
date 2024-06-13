@@ -1,15 +1,14 @@
 #include "program.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <filesystem>
-#include <unistd.h>
 #include <fstream>
 #include <iomanip>
+#include "data_reader.h"
 
-// Конструктор класса PaintApp
 PaintApp::PaintApp()
         : window(sf::VideoMode(768, 512), "Paint"),
-          isDrawing(false), isEraser(false), lineWidth(30.0f) {
+          isDrawing(false), isEraser(false), lineWidth(35.0f),
+          net(std::vector<size_t>{784, 128, 10}){
     window.setFramerateLimit(60);
 
     // Определяем размеры холста для рисования
@@ -89,9 +88,23 @@ PaintApp::PaintApp()
     }
     pencilSprite.setTexture(pencilTexture);
     pencilSprite.setOrigin(pencilTexture.getSize().x / 2, pencilTexture.getSize().y / 2);
+
+    // Инициализация нейросети
+    std::vector<size_t> architecture = {784, 128, 10};
+    net = TensorsNet(architecture);
+
+    // Загрузка обученных весов и смещений
+    Matrix M1 = Matrix::readMatrix("../learned/weights1.txt");
+    Matrix M2 = Matrix::readMatrix("../learned/weights2.txt");
+    std::vector<double> V1 = Matrix::readVector("../learned/bias1.txt");
+    std::vector<double> V2 = Matrix::readVector("../learned/bias2.txt");
+
+    net.graph[0][0].weights = M1;
+    net.graph[0][0].biases = V1;
+    net.graph[1][0].weights = M2;
+    net.graph[1][0].biases = V2;
 }
 
-// Основной метод для запуска приложения
 void PaintApp::run() {
     while (window.isOpen()) {
         processEvents();
@@ -100,7 +113,6 @@ void PaintApp::run() {
     }
 }
 
-// Обработка событий
 void PaintApp::processEvents() {
     sf::Event event;
     while (window.pollEvent(event)) {
@@ -118,7 +130,6 @@ void PaintApp::processEvents() {
                 sf::Image resizedImage = resizeImage(image, 28, 28);
                 resizedImage.saveToFile("drawing_28x28.png");
                 saveImageAsText(resizedImage, "drawing_28x28.txt");
-                resultText.setString("Result: ...");
             }
             if (event.key.code == sf::Keyboard::C) {
                 clearCanvas();
@@ -134,29 +145,25 @@ void PaintApp::processEvents() {
     }
 }
 
-// Обновление логики программы
 void PaintApp::update() {
     if (isDrawing) {
         sf::Vector2i currentMousePosition = sf::Mouse::getPosition(window);
-        // Ограничиваем рисование только областью холста
         if (drawingArea.getGlobalBounds().contains(static_cast<sf::Vector2f>(currentMousePosition))) {
             sf::RectangleShape line;
             line.setSize(sf::Vector2f(lineWidth, lineWidth));
             line.setFillColor(isEraser ? sf::Color::Black : sf::Color::White);
             line.setPosition(static_cast<sf::Vector2f>(currentMousePosition));
             canvas.draw(line);
-
             previousMousePosition = currentMousePosition;
         }
     }
     pencilSprite.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
 }
 
-// Отрисовка графики
 void PaintApp::render() {
     window.clear();
-    window.draw(background);  // Отрисовка белого фона
-    window.draw(drawingArea); // Отрисовка области для рисования
+    window.draw(background);
+    window.draw(drawingArea);
     canvas.display();
     window.draw(canvasSprite);
     drawUI();
@@ -164,7 +171,6 @@ void PaintApp::render() {
     window.display();
 }
 
-// Обработка ввода мыши
 void PaintApp::handleMouseInput(sf::Vector2i position, bool isPressed) {
     if (isPressed) {
         isDrawing = true;
@@ -174,43 +180,39 @@ void PaintApp::handleMouseInput(sf::Vector2i position, bool isPressed) {
     }
 }
 
-// Обработка нажатия кнопок
 void PaintApp::handleButtonClick(sf::Vector2i position) {
     if (saveButton.getGlobalBounds().contains(static_cast<sf::Vector2f>(position))) {
         sf::Image image = captureCanvas();
-        image.saveToFile("../drawing_original.png"); // Сохранение оригинального изображения
+        image.saveToFile("drawing_original.png");
         sf::Image resizedImage = resizeImage(image, 28, 28);
-        resizedImage.saveToFile("../drawing_28x28.png");
-        saveImageAsText(resizedImage, "../drawing.txt");
-        resultText.setString("Result: ...");
+        resizedImage.saveToFile("drawing_28x28.png");
+        saveImageAsText(resizedImage, "drawing.txt");
+        std::string filename = "drawing.txt";
+        int result = predictDigit(net, filename);
+        resultText.setString("Result: " + std::to_string(result));
     }
     if (clearButton.getGlobalBounds().contains(static_cast<sf::Vector2f>(position))) {
         clearCanvas();
     }
 }
 
-// Переключение между карандашом и ластиком
 void PaintApp::toggleTool() {
     isEraser = !isEraser;
     pencilSprite.setColor(isEraser ? sf::Color::Red : sf::Color::White);
 }
 
-// Очистка холста
 void PaintApp::clearCanvas() {
     canvas.clear(sf::Color::Black);
 }
 
-// Захват изображения с холста
 sf::Image PaintApp::captureCanvas() {
     canvas.display();
     return canvas.getTexture().copyToImage();
 }
 
-// Изменение размера изображения
 sf::Image PaintApp::resizeImage(const sf::Image& image, unsigned int width, unsigned int height) {
     sf::Image resizedImage;
     resizedImage.create(width, height, sf::Color::Black);
-
     sf::Vector2u imageSize = image.getSize();
     for (unsigned int y = 0; y < height; ++y) {
         for (unsigned int x = 0; x < width; ++x) {
@@ -219,11 +221,9 @@ sf::Image PaintApp::resizeImage(const sf::Image& image, unsigned int width, unsi
             resizedImage.setPixel(x, y, image.getPixel(srcX, srcY));
         }
     }
-
     return resizedImage;
 }
 
-// Сохранение изображения в текстовом формате
 void PaintApp::saveImageAsText(const sf::Image& image, const std::string& filename) {
     std::ofstream file(filename);
     if (file.is_open()) {
@@ -231,7 +231,7 @@ void PaintApp::saveImageAsText(const sf::Image& image, const std::string& filena
         for (unsigned int y = 0; y < size.y; ++y) {
             for (unsigned int x = 0; x < size.x; ++x) {
                 sf::Color color = image.getPixel(x, y);
-                double value = (color.r + color.g + color.b) / (3.0 * 255.0); // Преобразование в градации серого
+                double value = (color.r + color.g + color.b) / (3.0 * 255.0);
                 file << std::fixed << std::setprecision(6) << value << " ";
             }
             file << "\n";
@@ -242,7 +242,6 @@ void PaintApp::saveImageAsText(const sf::Image& image, const std::string& filena
     }
 }
 
-// Отрисовка пользовательского интерфейса
 void PaintApp::drawUI() {
     window.draw(instructions);
     window.draw(saveButton);
@@ -250,12 +249,5 @@ void PaintApp::drawUI() {
     window.draw(clearButton);
     window.draw(clearButtonText);
     window.draw(resultText);
-}
-
-// Точка входа в программу
-int main_program() {
-    PaintApp app;
-    app.run();
-    return 0;
 }
 
