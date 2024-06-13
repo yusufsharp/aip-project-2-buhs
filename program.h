@@ -2,6 +2,7 @@
 #define PROGRAM_H
 
 #include <SFML/Graphics.hpp>
+#include <string>
 
 class PaintApp {
 public:
@@ -18,6 +19,7 @@ private:
     void clearCanvas();
     sf::Image captureCanvas();
     sf::Image resizeImage(const sf::Image& image, unsigned int width, unsigned int height);
+    void saveImageAsText(const sf::Image& image, const std::string& filename); // Прототип новой функции
     void drawUI();
 
     sf::RenderWindow window;
@@ -39,4 +41,5 @@ private:
     sf::Sprite pencilSprite;
     float lineWidth;
 };
-#endif
+
+#endif // PROGRAM_H

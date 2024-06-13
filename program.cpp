@@ -3,11 +3,13 @@
 #include <iostream>
 #include <filesystem>
 #include <unistd.h>
+#include <fstream>
+#include <iomanip>
 
 // Конструктор класса PaintApp
 PaintApp::PaintApp()
         : window(sf::VideoMode(768, 512), "Paint"),
-          isDrawing(false), isEraser(false), lineWidth(20.0f) {
+          isDrawing(false), isEraser(false), lineWidth(30.0f) {
     window.setFramerateLimit(60);
 
     // Определяем размеры холста для рисования
@@ -42,8 +44,8 @@ PaintApp::PaintApp()
                            " on a black canvas and our program\n"
                            " will guess what this number is\n"
                            " (what miracles!?!?!?!).");
-    instructions.setCharacterSize(14); // Уменьшение размера шрифта
-    instructions.setFillColor(sf::Color::Black); // Изменение цвета текста на синий
+    instructions.setCharacterSize(14);
+    instructions.setFillColor(sf::Color::Black);
     instructions.setPosition(drawingAreaWidth + 10, 20);
 
     // Установка текста кнопки сохранения
@@ -75,12 +77,12 @@ PaintApp::PaintApp()
     // Установка текста для вывода результата
     resultText.setFont(font);
     resultText.setString("Result: ");
-    resultText.setCharacterSize(14); // Уменьшение размера шрифта
-    resultText.setFillColor(sf::Color::Black); // Изменение цвета текста на синий
+    resultText.setCharacterSize(14);
+    resultText.setFillColor(sf::Color::Black);
     resultText.setPosition(drawingAreaWidth + 10, 180);
 
     // Загрузка текстуры и установка спрайта карандаша
-    if (!pencilTexture.loadFromFile("../pencil.png")) {
+    if (!pencilTexture.loadFromFile("pencil.png")) {
         std::cerr << "Ошибка загрузки текстуры карандаша" << std::endl;
     } else {
         std::cout << "Текстура карандаша загружена успешно" << std::endl;
@@ -112,9 +114,11 @@ void PaintApp::processEvents() {
             }
             if (event.key.code == sf::Keyboard::S) {
                 sf::Image image = captureCanvas();
+                image.saveToFile("drawing_original.png"); // Сохранение оригинального изображения
                 sf::Image resizedImage = resizeImage(image, 28, 28);
-                resizedImage.saveToFile("../drawing.png");
-                resultText.setString("Результат: ..."); // Здесь вы можете добавить логику отправки изображения в ИИ и вывода результата
+                resizedImage.saveToFile("drawing_28x28.png");
+                saveImageAsText(resizedImage, "drawing_28x28.txt");
+                resultText.setString("Result: ...");
             }
             if (event.key.code == sf::Keyboard::C) {
                 clearCanvas();
@@ -174,9 +178,11 @@ void PaintApp::handleMouseInput(sf::Vector2i position, bool isPressed) {
 void PaintApp::handleButtonClick(sf::Vector2i position) {
     if (saveButton.getGlobalBounds().contains(static_cast<sf::Vector2f>(position))) {
         sf::Image image = captureCanvas();
+        image.saveToFile("../drawing_original.png"); // Сохранение оригинального изображения
         sf::Image resizedImage = resizeImage(image, 28, 28);
-        resizedImage.saveToFile("../drawing.png");
-        resultText.setString("Результат: ..."); // Здесь вы можете добавить логику отправки изображения в ИИ и вывода результата
+        resizedImage.saveToFile("../drawing_28x28.png");
+        saveImageAsText(resizedImage, "../drawing.txt");
+        resultText.setString("Result: ...");
     }
     if (clearButton.getGlobalBounds().contains(static_cast<sf::Vector2f>(position))) {
         clearCanvas();
@@ -215,6 +221,25 @@ sf::Image PaintApp::resizeImage(const sf::Image& image, unsigned int width, unsi
     }
 
     return resizedImage;
+}
+
+// Сохранение изображения в текстовом формате
+void PaintApp::saveImageAsText(const sf::Image& image, const std::string& filename) {
+    std::ofstream file(filename);
+    if (file.is_open()) {
+        sf::Vector2u size = image.getSize();
+        for (unsigned int y = 0; y < size.y; ++y) {
+            for (unsigned int x = 0; x < size.x; ++x) {
+                sf::Color color = image.getPixel(x, y);
+                double value = (color.r + color.g + color.b) / (3.0 * 255.0); // Преобразование в градации серого
+                file << std::fixed << std::setprecision(6) << value << " ";
+            }
+            file << "\n";
+        }
+        file.close();
+    } else {
+        std::cerr << "Не удалось открыть файл для записи: " << filename << std::endl;
+    }
 }
 
 // Отрисовка пользовательского интерфейса
