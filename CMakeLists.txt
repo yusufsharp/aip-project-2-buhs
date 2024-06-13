@@ -29,7 +29,6 @@ add_executable(aip_project_2_buhs
         TrainingLoop.cpp
         TrainingLoop.h
         predict.cpp
-        predict.h
 )
 
 # Связывание с библиотеками SFML

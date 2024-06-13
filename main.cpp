@@ -9,7 +9,7 @@
 int main() {
     PaintApp app;
     app.run();
-    // Чтение данных MNIST
+    // Чтеgit merge --continueние данных MNIST
     std::vector<std::vector<double>> train_images = readImageFile("../data/train-images.idx3-ubyte");
     std::vector<unsigned char> train_labels = readLabelFile("../data/train-labels.idx1-ubyte");
     printImage(train_images[228], 28);
