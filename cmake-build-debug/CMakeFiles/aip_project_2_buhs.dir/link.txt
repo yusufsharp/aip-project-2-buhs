@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/aip_project_2_buhs.dir/main.cpp.o CMakeFiles/aip_project_2_buhs.dir/neural_net.cpp.o CMakeFiles/aip_project_2_buhs.dir/program.cpp.o -o aip_project_2_buhs 
