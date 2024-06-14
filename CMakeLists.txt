@@ -7,8 +7,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(SFML_DIR "${CMAKE_SOURCE_DIR}/external/SFML/SFML")
 set(CMAKE_MODULE_PATH "${SFML_DIR}/cmake/Modules" ${CMAKE_MODULE_PATH})
 
-# Поиск пакета SFML
-find_package(SFML 2.5 COMPONENTS graphics window system audio network REQUIRED)
 
 # Включение директорий
 include_directories(${SFML_INCLUDE_DIR})

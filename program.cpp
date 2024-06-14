@@ -7,9 +7,10 @@
 
 PaintApp::PaintApp()
         : window(sf::VideoMode(768, 512), "Paint"),
-          isDrawing(false), isEraser(false), lineWidth(35.0f),
+          isDrawing(false), isEraser(false), lineWidth(55.0f),
           net(std::vector<size_t>{784, 128, 10}){
     window.setFramerateLimit(60);
+    window.setMouseCursorVisible(false); // Скрыть стандартный курсор мыши
 
     // Определяем размеры холста для рисования
     unsigned int drawingAreaWidth = 512;
@@ -81,7 +82,7 @@ PaintApp::PaintApp()
     resultText.setPosition(drawingAreaWidth + 10, 180);
 
     // Загрузка текстуры и установка спрайта карандаша
-    if (!pencilTexture.loadFromFile("pencil.png")) {
+    if (!pencilTexture.loadFromFile("../pencil.png")) {
         std::cerr << "Ошибка загрузки текстуры карандаша" << std::endl;
     } else {
         std::cout << "Текстура карандаша загружена успешно" << std::endl;
@@ -157,7 +158,7 @@ void PaintApp::update() {
             previousMousePosition = currentMousePosition;
         }
     }
-    pencilSprite.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
+    pencilSprite.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window))); // Обновляем позицию спрайта карандаша
 }
 
 void PaintApp::render() {
@@ -167,7 +168,7 @@ void PaintApp::render() {
     canvas.display();
     window.draw(canvasSprite);
     drawUI();
-    window.draw(pencilSprite);
+    window.draw(pencilSprite); // Отрисовываем спрайт карандаша
     window.display();
 }
 
@@ -213,14 +214,38 @@ sf::Image PaintApp::captureCanvas() {
 sf::Image PaintApp::resizeImage(const sf::Image& image, unsigned int width, unsigned int height) {
     sf::Image resizedImage;
     resizedImage.create(width, height, sf::Color::Black);
+
     sf::Vector2u imageSize = image.getSize();
+    double factorX = static_cast<double>(imageSize.x) / width;
+    double factorY = static_cast<double>(imageSize.y) / height;
+
     for (unsigned int y = 0; y < height; ++y) {
         for (unsigned int x = 0; x < width; ++x) {
-            unsigned int srcX = x * imageSize.x / width;
-            unsigned int srcY = y * imageSize.y / height;
-            resizedImage.setPixel(x, y, image.getPixel(srcX, srcY));
+            double sum = 0.0;
+            unsigned int count = 0;
+
+            // Суммируем значения цвета пикселей внутри каждого нового пикселя
+            for (unsigned int j = 0; j < factorY; ++j) {
+                for (unsigned int i = 0; i < factorX; ++i) {
+                    unsigned int srcX = x * factorX + i;
+                    unsigned int srcY = y * factorY + j;
+                    if (srcX < imageSize.x && srcY < imageSize.y) {
+                        sf::Color color = image.getPixel(srcX, srcY);
+                        double value = (color.r + color.g + color.b) / (3.0 * 255.0); // Нормализуем значения
+                        sum += value;
+                        ++count;
+                    }
+                }
+            }
+
+            // Вычисляем среднее значение и устанавливаем его как новый цвет пикселя
+            double average = count > 0 ? (sum / count) : 0.0;
+            sf::Uint8 pixelValue = static_cast<sf::Uint8>(average * 255.0);
+            sf::Color newColor(pixelValue, pixelValue, pixelValue);
+            resizedImage.setPixel(x, y, newColor);
         }
     }
+
     return resizedImage;
 }
 
@@ -250,4 +275,3 @@ void PaintApp::drawUI() {
     window.draw(clearButtonText);
     window.draw(resultText);
 }
-

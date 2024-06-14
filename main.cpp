@@ -7,7 +7,7 @@
 
 
 int main() {
-
+    std::cout << "let's go motherfacker\n";
     PaintApp app;
     app.run();
 

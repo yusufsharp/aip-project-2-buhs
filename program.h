@@ -43,6 +43,7 @@ private:
     sf::Sprite pencilSprite;
     float lineWidth;
 
+
     TensorsNet net; // Нейронная сеть для предсказаний
 };
 
