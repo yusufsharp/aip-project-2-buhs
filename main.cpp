@@ -1,3 +1,8 @@
+/**
+ * @file main.cpp
+ * @brief Основной файл программы для обучения нейронной сети и запуска приложения для рисования.
+ */
+
 #include "data_reader.h"
 #include "TensorsNet.h"
 #include "TrainingLoop.h"
@@ -5,18 +10,15 @@
 #include "predict.h"
 #include "program.h"
 
-
+/**
+ * @brief Основная функция программы.
+ * @return int Возвращает 0 при успешном завершении программы.
+ */
 int main() {
-    std::cout << "let's go motherfacker\n";
+    std::cout << "Let's go, motherfacker!\n";
+
+    // Создание и запуск приложения для рисования
     PaintApp app;
     app.run();
-
-
-    // Обучение сети
-    int epochs = 100;
-    double learning_rate = 0.01;
-    double momentum = 0.9;
-    //trainNetwork(net, train_images, train_labels, epochs, learning_rate, momentum);
-
     return 0;
 }

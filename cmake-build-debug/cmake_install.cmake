@@ -1,4 +1,4 @@
-# Install script for directory: /home/dima/programm_cpp/aip-project-2-buhs
+# Install script for directory: /home/dima/cpp/aip-project-2-buhs
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/dima/programm_cpp/aip-project-2-buhs/cmake-build-debug/external/googletest-main/cmake_install.cmake")
+  include("/home/dima/cpp/aip-project-2-buhs/cmake-build-debug/external/googletest-main/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -55,5 +55,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/dima/programm_cpp/aip-project-2-buhs/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/dima/cpp/aip-project-2-buhs/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

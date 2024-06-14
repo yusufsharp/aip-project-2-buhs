@@ -84,10 +84,10 @@ Matrix Matrix::dot(const Matrix &other) const {
     return result;
 }
 
-Matrix Matrix::eachMul(const Matrix& other) const{
+void Matrix::eachMul(const Matrix& other) const{
     if (getRows() != other.getRows() || getCols() != other.getCols()) {
         // ошибка если размеры не равны
-        return {};
+        std::cerr << "Разные размерности!" << std::endl;
     }
 
     Matrix result(getRows(), other.getCols());

@@ -1,4 +1,4 @@
-# Install script for directory: /home/dima/programm_cpp/aip-project-2-buhs/external/googletest-main
+# Install script for directory: /home/dima/cpp/aip-project-2-buhs/external/googletest-main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/dima/programm_cpp/aip-project-2-buhs/cmake-build-debug/external/googletest-main/googlemock/cmake_install.cmake")
+  include("/home/dima/cpp/aip-project-2-buhs/cmake-build-debug/external/googletest-main/googlemock/cmake_install.cmake")
 
 endif()
 
