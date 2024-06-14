@@ -29,17 +29,19 @@ BUHS AI - это система для распознавания рукопис
 1. Запуск полотна.
 
 ![Снимок экрана 2024-06-14 223429](https://github.com/yusufsharp/aip-project-2-buhs/assets/137401399/92da3e3a-0466-448f-a054-68d38622daac)
+
 2. Рисование цифры, используя мышь.
 
 ![Снимок экрана 2024-06-14 223440](https://github.com/yusufsharp/aip-project-2-buhs/assets/137401399/27180130-dcc9-40e0-a191-a1442728329d)
-4. Результат на экране. 
+
+3. Результат на экране. 
 
 ![Снимок экрана 2024-06-14 223452](https://github.com/yusufsharp/aip-project-2-buhs/assets/137401399/b4d8f2b3-b01b-47d3-afcd-9593dea357e2)
 
 ## Авторы
-Файзуллин Марат
-Фомин Дмитрий
-Шарыпов Юсуф
+[Файзуллин Марат](https://github.com/Shpunka)
+[Фомин Дмитрий](https://github.com/m1Trusya)
+[Шарыпов Юсуф](https://github.com/yusufsharp)
 
 ---
 
