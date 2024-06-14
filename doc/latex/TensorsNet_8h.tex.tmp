@@ -1,0 +1,38 @@
+\hypertarget{TensorsNet_8h}{}\doxysection{Tensors\+Net.\+h File Reference}
+\label{TensorsNet_8h}\index{TensorsNet.h@{TensorsNet.h}}
+
+
+Заголовочный файл для класса модели нейросети  
+
+
+{\ttfamily \#include \char`\"{}matrix.\+h\char`\"{}}\newline
+Include dependency graph for Tensors\+Net.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structLayer}{Layer}}
+\item 
+class \mbox{\hyperlink{classTensorsNet}{Tensors\+Net}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{TensorsNet_8h_a1d5cf0767aeaf61fd55ad0689e8222d0}{AIP\+\_\+\+PROJECT\+\_\+2\+\_\+\+BUHS\+\_\+\+TENSORSNET\+\_\+H}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Заголовочный файл для класса модели нейросети 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{TensorsNet_8h_a1d5cf0767aeaf61fd55ad0689e8222d0}\label{TensorsNet_8h_a1d5cf0767aeaf61fd55ad0689e8222d0}} 
+\index{TensorsNet.h@{TensorsNet.h}!AIP\_PROJECT\_2\_BUHS\_TENSORSNET\_H@{AIP\_PROJECT\_2\_BUHS\_TENSORSNET\_H}}
+\index{AIP\_PROJECT\_2\_BUHS\_TENSORSNET\_H@{AIP\_PROJECT\_2\_BUHS\_TENSORSNET\_H}!TensorsNet.h@{TensorsNet.h}}
+\doxysubsubsection{\texorpdfstring{AIP\_PROJECT\_2\_BUHS\_TENSORSNET\_H}{AIP\_PROJECT\_2\_BUHS\_TENSORSNET\_H}}
+{\footnotesize\ttfamily \#define AIP\+\_\+\+PROJECT\+\_\+2\+\_\+\+BUHS\+\_\+\+TENSORSNET\+\_\+H}
+

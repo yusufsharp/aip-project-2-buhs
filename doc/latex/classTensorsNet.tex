@@ -1,0 +1,179 @@
+\hypertarget{classTensorsNet}{}\doxysection{Tensors\+Net Class Reference}
+\label{classTensorsNet}\index{TensorsNet@{TensorsNet}}
+
+
+{\ttfamily \#include $<$Tensors\+Net.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTensorsNet_a31aa4876d9aad74c1dd48a0466ddcfbb}{Tensors\+Net}} (const std\+::vector$<$ size\+\_\+t $>$ \&all\+\_\+layers)
+\item 
+virtual void \mbox{\hyperlink{classTensorsNet_a26c01659788014af0c069fc8cccebedc}{forward\+Pass}} (const std\+::vector$<$ double $>$ \&inputs)
+\begin{DoxyCompactList}\small\item\em Performs the forward pass through the network. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTensorsNet_a4234a08c432da20bd2e954cdedcbe532}{backward\+Pass}} (const std\+::vector$<$ double $>$ \&outputs, double lr, double moment)
+\begin{DoxyCompactList}\small\item\em Performs the backward pass (backpropagation) through the network. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTensorsNet_aadd040ea792da84a7c0fca31da15216f}{add\+Conv\+Layer}} (size\+\_\+t num\+\_\+filter, size\+\_\+t filters\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Adds a convolutional layer to the network. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTensorsNet_a802ca43d4237feb4307d58b888f07d90}{add\+Layer}} (size\+\_\+t num\+\_\+input, size\+\_\+t num\+\_\+output, size\+\_\+t layer\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Adds a dense layer to the network. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTensorsNet_a38ec2c253d2cdc400e3e453d8de5f1d8}{conv\+Forward}} (const std\+::vector$<$ double $>$ \&inputs, size\+\_\+t conv\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Performs the forward pass for a convolutional layer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classTensorsNet_ab3be0e3e195cadb5eec8016b808ebd32}{relu\+\_\+function}} (std\+::vector$<$ double $>$ \&nonactive)
+\begin{DoxyCompactList}\small\item\em Applies Re\+LU activation function to the input values. \end{DoxyCompactList}\item 
+static std\+::vector$<$ double $>$ \mbox{\hyperlink{classTensorsNet_a18c08135f0e9fbeb5e5558253ff03291}{relu\+\_\+function\+\_\+derived}} (const std\+::vector$<$ double $>$ \&nonderived)
+\begin{DoxyCompactList}\small\item\em Computes the derivative of the Re\+LU activation function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{structLayer}{Layer}} $>$ $>$ \mbox{\hyperlink{classTensorsNet_a8772637966a593d5d594ccd9ce85a609}{graph}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTensorsNet_a31aa4876d9aad74c1dd48a0466ddcfbb}\label{classTensorsNet_a31aa4876d9aad74c1dd48a0466ddcfbb}} 
+\index{TensorsNet@{TensorsNet}!TensorsNet@{TensorsNet}}
+\index{TensorsNet@{TensorsNet}!TensorsNet@{TensorsNet}}
+\doxysubsubsection{\texorpdfstring{TensorsNet()}{TensorsNet()}}
+{\footnotesize\ttfamily Tensors\+Net\+::\+Tensors\+Net (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ size\+\_\+t $>$ \&}]{all\+\_\+layers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTensorsNet_aadd040ea792da84a7c0fca31da15216f}\label{classTensorsNet_aadd040ea792da84a7c0fca31da15216f}} 
+\index{TensorsNet@{TensorsNet}!addConvLayer@{addConvLayer}}
+\index{addConvLayer@{addConvLayer}!TensorsNet@{TensorsNet}}
+\doxysubsubsection{\texorpdfstring{addConvLayer()}{addConvLayer()}}
+{\footnotesize\ttfamily void Tensors\+Net\+::add\+Conv\+Layer (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{num\+\_\+filter,  }\item[{size\+\_\+t}]{filters\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Adds a convolutional layer to the network. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+filter} & Number of filters. \\
+\hline
+{\em filters\+\_\+size} & Size of each filter. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTensorsNet_a802ca43d4237feb4307d58b888f07d90}\label{classTensorsNet_a802ca43d4237feb4307d58b888f07d90}} 
+\index{TensorsNet@{TensorsNet}!addLayer@{addLayer}}
+\index{addLayer@{addLayer}!TensorsNet@{TensorsNet}}
+\doxysubsubsection{\texorpdfstring{addLayer()}{addLayer()}}
+{\footnotesize\ttfamily void Tensors\+Net\+::add\+Layer (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{num\+\_\+input,  }\item[{size\+\_\+t}]{num\+\_\+output,  }\item[{size\+\_\+t}]{layer\+\_\+type }\end{DoxyParamCaption})}
+
+
+
+Adds a dense layer to the network. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+input} & Number of input neurons. \\
+\hline
+{\em num\+\_\+output} & Number of output neurons. \\
+\hline
+{\em layer\+\_\+type} & Type of the layer. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTensorsNet_a4234a08c432da20bd2e954cdedcbe532}\label{classTensorsNet_a4234a08c432da20bd2e954cdedcbe532}} 
+\index{TensorsNet@{TensorsNet}!backwardPass@{backwardPass}}
+\index{backwardPass@{backwardPass}!TensorsNet@{TensorsNet}}
+\doxysubsubsection{\texorpdfstring{backwardPass()}{backwardPass()}}
+{\footnotesize\ttfamily void Tensors\+Net\+::backward\+Pass (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{outputs,  }\item[{double}]{lr,  }\item[{double}]{moment }\end{DoxyParamCaption})}
+
+
+
+Performs the backward pass (backpropagation) through the network. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outputs} & Expected output values. \\
+\hline
+{\em lr} & Learning rate. \\
+\hline
+{\em moment} & Momentum for the gradient update. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTensorsNet_a38ec2c253d2cdc400e3e453d8de5f1d8}\label{classTensorsNet_a38ec2c253d2cdc400e3e453d8de5f1d8}} 
+\index{TensorsNet@{TensorsNet}!convForward@{convForward}}
+\index{convForward@{convForward}!TensorsNet@{TensorsNet}}
+\doxysubsubsection{\texorpdfstring{convForward()}{convForward()}}
+{\footnotesize\ttfamily void Tensors\+Net\+::conv\+Forward (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{inputs,  }\item[{size\+\_\+t}]{conv\+\_\+index }\end{DoxyParamCaption})}
+
+
+
+Performs the forward pass for a convolutional layer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inputs} & Input values for the convolutional layer. \\
+\hline
+{\em conv\+\_\+index} & Index of the convolutional layer in the network. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTensorsNet_a26c01659788014af0c069fc8cccebedc}\label{classTensorsNet_a26c01659788014af0c069fc8cccebedc}} 
+\index{TensorsNet@{TensorsNet}!forwardPass@{forwardPass}}
+\index{forwardPass@{forwardPass}!TensorsNet@{TensorsNet}}
+\doxysubsubsection{\texorpdfstring{forwardPass()}{forwardPass()}}
+{\footnotesize\ttfamily virtual void Tensors\+Net\+::forward\+Pass (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{inputs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Performs the forward pass through the network. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inputs} & Input values for the forward pass. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTensorsNet_ab3be0e3e195cadb5eec8016b808ebd32}\label{classTensorsNet_ab3be0e3e195cadb5eec8016b808ebd32}} 
+\index{TensorsNet@{TensorsNet}!relu\_function@{relu\_function}}
+\index{relu\_function@{relu\_function}!TensorsNet@{TensorsNet}}
+\doxysubsubsection{\texorpdfstring{relu\_function()}{relu\_function()}}
+{\footnotesize\ttfamily static void Tensors\+Net\+::relu\+\_\+function (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{nonactive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Applies Re\+LU activation function to the input values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nonactive} & Input values to be activated. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTensorsNet_a18c08135f0e9fbeb5e5558253ff03291}\label{classTensorsNet_a18c08135f0e9fbeb5e5558253ff03291}} 
+\index{TensorsNet@{TensorsNet}!relu\_function\_derived@{relu\_function\_derived}}
+\index{relu\_function\_derived@{relu\_function\_derived}!TensorsNet@{TensorsNet}}
+\doxysubsubsection{\texorpdfstring{relu\_function\_derived()}{relu\_function\_derived()}}
+{\footnotesize\ttfamily static std\+::vector$<$double$>$ Tensors\+Net\+::relu\+\_\+function\+\_\+derived (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{nonderived }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Computes the derivative of the Re\+LU activation function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nonderived} & Input values for which to compute the derivative. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of derivative values. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classTensorsNet_a8772637966a593d5d594ccd9ce85a609}\label{classTensorsNet_a8772637966a593d5d594ccd9ce85a609}} 
+\index{TensorsNet@{TensorsNet}!graph@{graph}}
+\index{graph@{graph}!TensorsNet@{TensorsNet}}
+\doxysubsubsection{\texorpdfstring{graph}{graph}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$\mbox{\hyperlink{structLayer}{Layer}}$>$ $>$ Tensors\+Net\+::graph}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{TensorsNet_8h}{Tensors\+Net.\+h}}\end{DoxyCompactItemize}

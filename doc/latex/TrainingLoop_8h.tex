@@ -1,0 +1,92 @@
+\hypertarget{TrainingLoop_8h}{}\doxysection{Training\+Loop.\+h File Reference}
+\label{TrainingLoop_8h}\index{TrainingLoop.h@{TrainingLoop.h}}
+
+
+Заголовочный файл для функций, обучающих нейросеть.  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}Tensors\+Net.\+h\char`\"{}}\newline
+Include dependency graph for Training\+Loop.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{TrainingLoop_8h_aba51e97486b13f3b383b27428b2a846a}{train\+Network}} (\mbox{\hyperlink{classTensorsNet}{Tensors\+Net}} \&net, const std\+::vector$<$ std\+::vector$<$ double $>$$>$ \&train\+\_\+images, const std\+::vector$<$ unsigned char $>$ \&train\+\_\+labels, int epochs, double learning\+\_\+rate, double momentum)
+\begin{DoxyCompactList}\small\item\em Функция для обучения нейронной сети. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{TrainingLoop_8h_ab2c05a0ad3f533f9ea63120e96a208ec}{save\+Weights\+And\+Biases}} (const \mbox{\hyperlink{classTensorsNet}{Tensors\+Net}} \&net, const std\+::string \&filename1, const std\+::string \&filename2)
+\begin{DoxyCompactList}\small\item\em Функция для сохранения весов и смещений нейронной сети в файлы. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{TrainingLoop_8h_a70a472fb37968176de5f18d0612d7a17}{predict\+Digit}} (\mbox{\hyperlink{classTensorsNet}{Tensors\+Net}} \&net, const std\+::vector$<$ std\+::vector$<$ double $>$$>$ \&image)
+\begin{DoxyCompactList}\small\item\em Функция для предсказания числа на основе входного изображения. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Заголовочный файл для функций, обучающих нейросеть. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{TrainingLoop_8h_a70a472fb37968176de5f18d0612d7a17}\label{TrainingLoop_8h_a70a472fb37968176de5f18d0612d7a17}} 
+\index{TrainingLoop.h@{TrainingLoop.h}!predictDigit@{predictDigit}}
+\index{predictDigit@{predictDigit}!TrainingLoop.h@{TrainingLoop.h}}
+\doxysubsubsection{\texorpdfstring{predictDigit()}{predictDigit()}}
+{\footnotesize\ttfamily void predict\+Digit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTensorsNet}{Tensors\+Net}} \&}]{net,  }\item[{const std\+::vector$<$ std\+::vector$<$ double $>$$>$ \&}]{image }\end{DoxyParamCaption})}
+
+
+
+Функция для предсказания числа на основе входного изображения. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em net} & Нейронная сеть, используемая для предсказания. \\
+\hline
+{\em image} & Изображение, представленное в виде двумерного массива (28x28).\\
+\hline
+\end{DoxyParams}
+Эта функция выполняет предсказание на основе входного изображения, выполняя прямой проход через сеть. Она выводит предсказанное число и значения выходного слоя. \mbox{\Hypertarget{TrainingLoop_8h_ab2c05a0ad3f533f9ea63120e96a208ec}\label{TrainingLoop_8h_ab2c05a0ad3f533f9ea63120e96a208ec}} 
+\index{TrainingLoop.h@{TrainingLoop.h}!saveWeightsAndBiases@{saveWeightsAndBiases}}
+\index{saveWeightsAndBiases@{saveWeightsAndBiases}!TrainingLoop.h@{TrainingLoop.h}}
+\doxysubsubsection{\texorpdfstring{saveWeightsAndBiases()}{saveWeightsAndBiases()}}
+{\footnotesize\ttfamily void save\+Weights\+And\+Biases (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTensorsNet}{Tensors\+Net}} \&}]{net,  }\item[{const std\+::string \&}]{filename1,  }\item[{const std\+::string \&}]{filename2 }\end{DoxyParamCaption})}
+
+
+
+Функция для сохранения весов и смещений нейронной сети в файлы. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em net} & Нейронная сеть, чьи веса и смещения необходимо сохранить. \\
+\hline
+{\em filename1} & Имя файла для сохранения весов. \\
+\hline
+{\em filename2} & Имя файла для сохранения смещений.\\
+\hline
+\end{DoxyParams}
+Эта функция сохраняет текущие веса и смещения всех слоев нейронной сети в указанные файлы. \mbox{\Hypertarget{TrainingLoop_8h_aba51e97486b13f3b383b27428b2a846a}\label{TrainingLoop_8h_aba51e97486b13f3b383b27428b2a846a}} 
+\index{TrainingLoop.h@{TrainingLoop.h}!trainNetwork@{trainNetwork}}
+\index{trainNetwork@{trainNetwork}!TrainingLoop.h@{TrainingLoop.h}}
+\doxysubsubsection{\texorpdfstring{trainNetwork()}{trainNetwork()}}
+{\footnotesize\ttfamily void train\+Network (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTensorsNet}{Tensors\+Net}} \&}]{net,  }\item[{const std\+::vector$<$ std\+::vector$<$ double $>$$>$ \&}]{train\+\_\+images,  }\item[{const std\+::vector$<$ unsigned char $>$ \&}]{train\+\_\+labels,  }\item[{int}]{epochs,  }\item[{double}]{learning\+\_\+rate,  }\item[{double}]{momentum }\end{DoxyParamCaption})}
+
+
+
+Функция для обучения нейронной сети. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em net} & Обучаемая нейронная сеть. \\
+\hline
+{\em train\+\_\+images} & Набор тренировочных изображений, представленных в виде двумерных массивов. \\
+\hline
+{\em train\+\_\+labels} & Набор меток классов для тренировочных изображений. \\
+\hline
+{\em epochs} & Количество эпох обучения. \\
+\hline
+{\em learning\+\_\+rate} & Скорость обучения. \\
+\hline
+{\em momentum} & Момент для градиентного спуска.\\
+\hline
+\end{DoxyParams}
+Эта функция выполняет обучение нейронной сети, используя предоставленные тренировочные данные. Она выполняет прямой и обратный проходы для каждого изображения и обновляет веса и смещения сети. 

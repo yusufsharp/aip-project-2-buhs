@@ -1,0 +1,538 @@
+\hypertarget{classMatrix}{}\doxysection{Matrix Class Reference}
+\label{classMatrix}\index{Matrix@{Matrix}}
+
+
+Класс для работы с матрицами.  
+
+
+
+
+{\ttfamily \#include $<$matrix.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMatrix_a2dba13c45127354c9f75ef576f49269b}{Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Конструктор по умолчанию. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMatrix_ac7f8b1a7f8e2dac847e08493343b05f2}{Matrix}} (size\+\_\+t rows, size\+\_\+t cols)
+\begin{DoxyCompactList}\small\item\em Конструктор, создающий матрицу заданного размера. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMatrix_a132de5d69c6a2db8ede1b8e1aa82d0b6}{set\+Element}} (size\+\_\+t row, size\+\_\+t col, double value)
+\begin{DoxyCompactList}\small\item\em Устанавливает значение элемента матрицы. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMatrix_aba1344d31cbf82ba19b531a79589640d}{print\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Выводит матрицу на экран. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classMatrix_af1d87fe71f9659faefa9e8aaadc7b301}{get\+Rows}} () const
+\begin{DoxyCompactList}\small\item\em Возвращает количество строк матрицы. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classMatrix_af3c4c7bebd120cd1df591369159961a5}{get\+Cols}} () const
+\begin{DoxyCompactList}\small\item\em Возвращает количество столбцов матрицы. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMatrix}{Matrix}} \mbox{\hyperlink{classMatrix_aba36b028520ff2bc96e2c4df0222dafb}{t}} () const
+\begin{DoxyCompactList}\small\item\em Возвращает транспонированную матрицу. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classMatrix_a562c566a4f7a35ae93ddb5a4e2af72a8}{get\+Element}} (size\+\_\+t row, size\+\_\+t col) const
+\begin{DoxyCompactList}\small\item\em Возвращает значение элемента матрицы. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMatrix}{Matrix}} \mbox{\hyperlink{classMatrix_a7caa17df97f9f37d1c5d6aebc08b00c1}{add}} (const \mbox{\hyperlink{classMatrix}{Matrix}} \&other) const
+\begin{DoxyCompactList}\small\item\em Складывает текущую матрицу с другой матрицей. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMatrix}{Matrix}} \mbox{\hyperlink{classMatrix_a7e3a19077d0935d9b1fad56660cb627e}{scalar\+Mul}} (double coeff) const
+\begin{DoxyCompactList}\small\item\em Умножает текущую матрицу на скаляр. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMatrix}{Matrix}} \mbox{\hyperlink{classMatrix_a968ec2eaac1947ea060288aa4734c749}{dot}} (const \mbox{\hyperlink{classMatrix}{Matrix}} \&other) const
+\begin{DoxyCompactList}\small\item\em Умножает текущую матрицу на другую матрицу. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMatrix_a289c2e82130c90d29dda5078a4e559a8}{each\+Mul}} (const \mbox{\hyperlink{classMatrix}{Matrix}} \&other) const
+\begin{DoxyCompactList}\small\item\em Поэлементно умножает текущую матрицу на другую матрицу. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classMatrix_a3e1ec88000c50e05ff5cad65f97c663e}{dot\+Vector}} (const std\+::vector$<$ double $>$ \&vec) const
+\begin{DoxyCompactList}\small\item\em Умножает текущую матрицу на вектор. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classMatrix_a16c2ccf3cb373f317d391f39c5adcb39}{conv\+Dot}} (size\+\_\+t i1, size\+\_\+t i2, size\+\_\+t j1, size\+\_\+t j2, \mbox{\hyperlink{classMatrix}{Matrix}} weights, double bias) const
+\begin{DoxyCompactList}\small\item\em Выполняет свёртку матрицы с весами и смещением. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMatrix_a7d11599d987b1a41763a628f533997f9}{add\+Vec}} (const std\+::vector$<$ double $>$ \&row\+Vector)
+\begin{DoxyCompactList}\small\item\em Добавляет вектор в качестве новой строки матрицы. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{classMatrix_a61250a14eafc9640927ec19132366663}{gen\+Random}} ()
+\begin{DoxyCompactList}\small\item\em Генерирует случайное число в диапазоне от -\/1.\+0 до 1.\+0. \end{DoxyCompactList}\item 
+static std\+::vector$<$ double $>$ \mbox{\hyperlink{classMatrix_aa844ca5be38d953a9321aa7756bacc5a}{sum\+Vecs}} (std\+::vector$<$ double $>$ vec1, std\+::vector$<$ double $>$ vec2)
+\begin{DoxyCompactList}\small\item\em Складывает два вектора. \end{DoxyCompactList}\item 
+static std\+::vector$<$ double $>$ \mbox{\hyperlink{classMatrix_a3b8b12b74130ef654c55d3366b1af271}{sub\+Vecs}} (std\+::vector$<$ double $>$ vec1, std\+::vector$<$ double $>$ vec2)
+\begin{DoxyCompactList}\small\item\em Вычитает один вектор из другого. \end{DoxyCompactList}\item 
+static std\+::vector$<$ double $>$ \mbox{\hyperlink{classMatrix_a644a73aee50face725ae10ecb0b50125}{eachmul\+Vecs}} (std\+::vector$<$ double $>$ vec1, std\+::vector$<$ double $>$ vec2)
+\begin{DoxyCompactList}\small\item\em Поэлементно умножает два вектора. \end{DoxyCompactList}\item 
+static double \mbox{\hyperlink{classMatrix_af64418f06543f82fd24ef002e68c6e80}{dotprod\+Vecs}} (std\+::vector$<$ double $>$ vec1, std\+::vector$<$ double $>$ vec2)
+\begin{DoxyCompactList}\small\item\em Вычисляет скалярное произведение двух векторов. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classMatrix}{Matrix}} \mbox{\hyperlink{classMatrix_aedf2615de0cefb8d78f51697e3f7a6e3}{ij\+\_\+mul}} (std\+::vector$<$ double $>$ vec1, std\+::vector$<$ double $>$ vec2)
+\begin{DoxyCompactList}\small\item\em Выполняет внешнее произведение двух векторов. \end{DoxyCompactList}\item 
+static std\+::vector$<$ double $>$ \mbox{\hyperlink{classMatrix_acb37b3513350d735f673ec400a2baaf3}{scalar\+Mul\+Vec}} (const std\+::vector$<$ double $>$ \&vec, double coeff)
+\begin{DoxyCompactList}\small\item\em Умножает вектор на скаляр. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classMatrix}{Matrix}} \mbox{\hyperlink{classMatrix_ae8cdcab1aac9c255929f56221d10833a}{vec\+Reshape}} (std\+::vector$<$ double $>$ vec, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Преобразует вектор в квадратную матрицу заданного размера. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classMatrix}{Matrix}} \mbox{\hyperlink{classMatrix_a2c0e8ad0088f493ddf3d5b4bd6e3004e}{read\+Matrix}} (const std\+::string \&file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Читает матрицу из файла. \end{DoxyCompactList}\item 
+static std\+::vector$<$ double $>$ \mbox{\hyperlink{classMatrix_aeef5a7a0b0e27faed08aac51adfe6200}{read\+Vector}} (const std\+::string \&file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Читает вектор из файла. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \mbox{\hyperlink{classMatrix_adab4557133e13b08ae470a8e5df7b99c}{data}}
+\begin{DoxyCompactList}\small\item\em Данные матрицы. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Класс для работы с матрицами. 
+
+Этот класс предоставляет методы для создания, изменения и выполнения различных операций с матрицами. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMatrix_a2dba13c45127354c9f75ef576f49269b}\label{classMatrix_a2dba13c45127354c9f75ef576f49269b}} 
+\index{Matrix@{Matrix}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{Matrix()}{Matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Matrix\+::\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Конструктор по умолчанию. 
+
+\mbox{\Hypertarget{classMatrix_ac7f8b1a7f8e2dac847e08493343b05f2}\label{classMatrix_ac7f8b1a7f8e2dac847e08493343b05f2}} 
+\index{Matrix@{Matrix}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{Matrix()}{Matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Matrix\+::\+Matrix (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{rows,  }\item[{size\+\_\+t}]{cols }\end{DoxyParamCaption})}
+
+
+
+Конструктор, создающий матрицу заданного размера. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rows} & Количество строк. \\
+\hline
+{\em cols} & Количество столбцов. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMatrix_a7caa17df97f9f37d1c5d6aebc08b00c1}\label{classMatrix_a7caa17df97f9f37d1c5d6aebc08b00c1}} 
+\index{Matrix@{Matrix}!add@{add}}
+\index{add@{add}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMatrix}{Matrix}} Matrix\+::add (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classMatrix}{Matrix}} \&}]{other }\end{DoxyParamCaption}) const}
+
+
+
+Складывает текущую матрицу с другой матрицей. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Другая матрица. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Результат сложения. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a7d11599d987b1a41763a628f533997f9}\label{classMatrix_a7d11599d987b1a41763a628f533997f9}} 
+\index{Matrix@{Matrix}!addVec@{addVec}}
+\index{addVec@{addVec}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{addVec()}{addVec()}}
+{\footnotesize\ttfamily void Matrix\+::add\+Vec (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{row\+Vector }\end{DoxyParamCaption})}
+
+
+
+Добавляет вектор в качестве новой строки матрицы. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+Vector} & Вектор для добавления. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMatrix_a16c2ccf3cb373f317d391f39c5adcb39}\label{classMatrix_a16c2ccf3cb373f317d391f39c5adcb39}} 
+\index{Matrix@{Matrix}!convDot@{convDot}}
+\index{convDot@{convDot}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{convDot()}{convDot()}}
+{\footnotesize\ttfamily double Matrix\+::conv\+Dot (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i1,  }\item[{size\+\_\+t}]{i2,  }\item[{size\+\_\+t}]{j1,  }\item[{size\+\_\+t}]{j2,  }\item[{\mbox{\hyperlink{classMatrix}{Matrix}}}]{weights,  }\item[{double}]{bias }\end{DoxyParamCaption}) const}
+
+
+
+Выполняет свёртку матрицы с весами и смещением. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i1} & Начальный индекс строки. \\
+\hline
+{\em i2} & Конечный индекс строки. \\
+\hline
+{\em j1} & Начальный индекс столбца. \\
+\hline
+{\em j2} & Конечный индекс столбца. \\
+\hline
+{\em weights} & Весовая матрица. \\
+\hline
+{\em bias} & Смещение. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Результат свёртки. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a968ec2eaac1947ea060288aa4734c749}\label{classMatrix_a968ec2eaac1947ea060288aa4734c749}} 
+\index{Matrix@{Matrix}!dot@{dot}}
+\index{dot@{dot}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{dot()}{dot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMatrix}{Matrix}} Matrix\+::dot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classMatrix}{Matrix}} \&}]{other }\end{DoxyParamCaption}) const}
+
+
+
+Умножает текущую матрицу на другую матрицу. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Другая матрица. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Результат умножения. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_af64418f06543f82fd24ef002e68c6e80}\label{classMatrix_af64418f06543f82fd24ef002e68c6e80}} 
+\index{Matrix@{Matrix}!dotprodVecs@{dotprodVecs}}
+\index{dotprodVecs@{dotprodVecs}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{dotprodVecs()}{dotprodVecs()}}
+{\footnotesize\ttfamily static double Matrix\+::dotprod\+Vecs (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{vec1,  }\item[{std\+::vector$<$ double $>$}]{vec2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Вычисляет скалярное произведение двух векторов. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec1} & Первый вектор. \\
+\hline
+{\em vec2} & Второй вектор. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Скалярное произведение. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a3e1ec88000c50e05ff5cad65f97c663e}\label{classMatrix_a3e1ec88000c50e05ff5cad65f97c663e}} 
+\index{Matrix@{Matrix}!dotVector@{dotVector}}
+\index{dotVector@{dotVector}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{dotVector()}{dotVector()}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ Matrix\+::dot\+Vector (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{vec }\end{DoxyParamCaption}) const}
+
+
+
+Умножает текущую матрицу на вектор. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Вектор. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Результат умножения. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a289c2e82130c90d29dda5078a4e559a8}\label{classMatrix_a289c2e82130c90d29dda5078a4e559a8}} 
+\index{Matrix@{Matrix}!eachMul@{eachMul}}
+\index{eachMul@{eachMul}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{eachMul()}{eachMul()}}
+{\footnotesize\ttfamily void Matrix\+::each\+Mul (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classMatrix}{Matrix}} \&}]{other }\end{DoxyParamCaption}) const}
+
+
+
+Поэлементно умножает текущую матрицу на другую матрицу. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Другая матрица. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Результат поэлементного умножения. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a644a73aee50face725ae10ecb0b50125}\label{classMatrix_a644a73aee50face725ae10ecb0b50125}} 
+\index{Matrix@{Matrix}!eachmulVecs@{eachmulVecs}}
+\index{eachmulVecs@{eachmulVecs}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{eachmulVecs()}{eachmulVecs()}}
+{\footnotesize\ttfamily static std\+::vector$<$double$>$ Matrix\+::eachmul\+Vecs (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{vec1,  }\item[{std\+::vector$<$ double $>$}]{vec2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Поэлементно умножает два вектора. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec1} & Первый вектор. \\
+\hline
+{\em vec2} & Второй вектор. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Результат поэлементного умножения. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a61250a14eafc9640927ec19132366663}\label{classMatrix_a61250a14eafc9640927ec19132366663}} 
+\index{Matrix@{Matrix}!genRandom@{genRandom}}
+\index{genRandom@{genRandom}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{genRandom()}{genRandom()}}
+{\footnotesize\ttfamily static double Matrix\+::gen\+Random (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Генерирует случайное число в диапазоне от -\/1.\+0 до 1.\+0. 
+
+\begin{DoxyReturn}{Returns}
+Случайное число. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_af3c4c7bebd120cd1df591369159961a5}\label{classMatrix_af3c4c7bebd120cd1df591369159961a5}} 
+\index{Matrix@{Matrix}!getCols@{getCols}}
+\index{getCols@{getCols}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{getCols()}{getCols()}}
+{\footnotesize\ttfamily size\+\_\+t Matrix\+::get\+Cols (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Возвращает количество столбцов матрицы. 
+
+\begin{DoxyReturn}{Returns}
+Количество столбцов. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a562c566a4f7a35ae93ddb5a4e2af72a8}\label{classMatrix_a562c566a4f7a35ae93ddb5a4e2af72a8}} 
+\index{Matrix@{Matrix}!getElement@{getElement}}
+\index{getElement@{getElement}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{getElement()}{getElement()}}
+{\footnotesize\ttfamily double Matrix\+::get\+Element (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{row,  }\item[{size\+\_\+t}]{col }\end{DoxyParamCaption}) const}
+
+
+
+Возвращает значение элемента матрицы. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Номер строки. \\
+\hline
+{\em col} & Номер столбца. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Значение элемента. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_af1d87fe71f9659faefa9e8aaadc7b301}\label{classMatrix_af1d87fe71f9659faefa9e8aaadc7b301}} 
+\index{Matrix@{Matrix}!getRows@{getRows}}
+\index{getRows@{getRows}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{getRows()}{getRows()}}
+{\footnotesize\ttfamily size\+\_\+t Matrix\+::get\+Rows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Возвращает количество строк матрицы. 
+
+\begin{DoxyReturn}{Returns}
+Количество строк. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_aedf2615de0cefb8d78f51697e3f7a6e3}\label{classMatrix_aedf2615de0cefb8d78f51697e3f7a6e3}} 
+\index{Matrix@{Matrix}!ij\_mul@{ij\_mul}}
+\index{ij\_mul@{ij\_mul}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{ij\_mul()}{ij\_mul()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classMatrix}{Matrix}} Matrix\+::ij\+\_\+mul (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{vec1,  }\item[{std\+::vector$<$ double $>$}]{vec2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Выполняет внешнее произведение двух векторов. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec1} & Первый вектор. \\
+\hline
+{\em vec2} & Второй вектор. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Матрица результата внешнего произведения. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_aba1344d31cbf82ba19b531a79589640d}\label{classMatrix_aba1344d31cbf82ba19b531a79589640d}} 
+\index{Matrix@{Matrix}!printMatrix@{printMatrix}}
+\index{printMatrix@{printMatrix}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{printMatrix()}{printMatrix()}}
+{\footnotesize\ttfamily void Matrix\+::print\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Выводит матрицу на экран. 
+
+\mbox{\Hypertarget{classMatrix_a2c0e8ad0088f493ddf3d5b4bd6e3004e}\label{classMatrix_a2c0e8ad0088f493ddf3d5b4bd6e3004e}} 
+\index{Matrix@{Matrix}!readMatrix@{readMatrix}}
+\index{readMatrix@{readMatrix}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{readMatrix()}{readMatrix()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classMatrix}{Matrix}} Matrix\+::read\+Matrix (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Читает матрицу из файла. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & Путь к файлу. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Прочитанная матрица. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_aeef5a7a0b0e27faed08aac51adfe6200}\label{classMatrix_aeef5a7a0b0e27faed08aac51adfe6200}} 
+\index{Matrix@{Matrix}!readVector@{readVector}}
+\index{readVector@{readVector}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{readVector()}{readVector()}}
+{\footnotesize\ttfamily static std\+::vector$<$double$>$ Matrix\+::read\+Vector (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Читает вектор из файла. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & Путь к файлу. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Прочитанный вектор. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a7e3a19077d0935d9b1fad56660cb627e}\label{classMatrix_a7e3a19077d0935d9b1fad56660cb627e}} 
+\index{Matrix@{Matrix}!scalarMul@{scalarMul}}
+\index{scalarMul@{scalarMul}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{scalarMul()}{scalarMul()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMatrix}{Matrix}} Matrix\+::scalar\+Mul (\begin{DoxyParamCaption}\item[{double}]{coeff }\end{DoxyParamCaption}) const}
+
+
+
+Умножает текущую матрицу на скаляр. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coeff} & Скаляр. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Результат умножения. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_acb37b3513350d735f673ec400a2baaf3}\label{classMatrix_acb37b3513350d735f673ec400a2baaf3}} 
+\index{Matrix@{Matrix}!scalarMulVec@{scalarMulVec}}
+\index{scalarMulVec@{scalarMulVec}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{scalarMulVec()}{scalarMulVec()}}
+{\footnotesize\ttfamily static std\+::vector$<$double$>$ Matrix\+::scalar\+Mul\+Vec (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{vec,  }\item[{double}]{coeff }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Умножает вектор на скаляр. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Вектор. \\
+\hline
+{\em coeff} & Скаляр. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Результат умножения. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a132de5d69c6a2db8ede1b8e1aa82d0b6}\label{classMatrix_a132de5d69c6a2db8ede1b8e1aa82d0b6}} 
+\index{Matrix@{Matrix}!setElement@{setElement}}
+\index{setElement@{setElement}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{setElement()}{setElement()}}
+{\footnotesize\ttfamily void Matrix\+::set\+Element (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{row,  }\item[{size\+\_\+t}]{col,  }\item[{double}]{value }\end{DoxyParamCaption})}
+
+
+
+Устанавливает значение элемента матрицы. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Номер строки. \\
+\hline
+{\em col} & Номер столбца. \\
+\hline
+{\em value} & Значение. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMatrix_a3b8b12b74130ef654c55d3366b1af271}\label{classMatrix_a3b8b12b74130ef654c55d3366b1af271}} 
+\index{Matrix@{Matrix}!subVecs@{subVecs}}
+\index{subVecs@{subVecs}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{subVecs()}{subVecs()}}
+{\footnotesize\ttfamily static std\+::vector$<$double$>$ Matrix\+::sub\+Vecs (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{vec1,  }\item[{std\+::vector$<$ double $>$}]{vec2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Вычитает один вектор из другого. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec1} & Уменьшаемое. \\
+\hline
+{\em vec2} & Вычитаемое. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Результат вычитания. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_aa844ca5be38d953a9321aa7756bacc5a}\label{classMatrix_aa844ca5be38d953a9321aa7756bacc5a}} 
+\index{Matrix@{Matrix}!sumVecs@{sumVecs}}
+\index{sumVecs@{sumVecs}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{sumVecs()}{sumVecs()}}
+{\footnotesize\ttfamily static std\+::vector$<$double$>$ Matrix\+::sum\+Vecs (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{vec1,  }\item[{std\+::vector$<$ double $>$}]{vec2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Складывает два вектора. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec1} & Первый вектор. \\
+\hline
+{\em vec2} & Второй вектор. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Результат сложения. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_aba36b028520ff2bc96e2c4df0222dafb}\label{classMatrix_aba36b028520ff2bc96e2c4df0222dafb}} 
+\index{Matrix@{Matrix}!t@{t}}
+\index{t@{t}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{t()}{t()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMatrix}{Matrix}} Matrix\+::t (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Возвращает транспонированную матрицу. 
+
+\begin{DoxyReturn}{Returns}
+Транспонированная матрица. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_ae8cdcab1aac9c255929f56221d10833a}\label{classMatrix_ae8cdcab1aac9c255929f56221d10833a}} 
+\index{Matrix@{Matrix}!vecReshape@{vecReshape}}
+\index{vecReshape@{vecReshape}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{vecReshape()}{vecReshape()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classMatrix}{Matrix}} Matrix\+::vec\+Reshape (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{vec,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Преобразует вектор в квадратную матрицу заданного размера. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Вектор. \\
+\hline
+{\em size} & Размер стороны квадратной матрицы. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Результат преобразования. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classMatrix_adab4557133e13b08ae470a8e5df7b99c}\label{classMatrix_adab4557133e13b08ae470a8e5df7b99c}} 
+\index{Matrix@{Matrix}!data@{data}}
+\index{data@{data}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$double$>$ $>$ Matrix\+::data}
+
+
+
+Данные матрицы. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{matrix_8h}{matrix.\+h}}\end{DoxyCompactItemize}

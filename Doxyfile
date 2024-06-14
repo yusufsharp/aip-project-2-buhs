@@ -1,0 +1,21 @@
+# Doxyfile 1.9.1
+
+PROJECT_NAME           = "Buhs_AI"
+OUTPUT_DIRECTORY       = ./doc
+INPUT                  = main.cpp matrix.h predict.h program.h TensorsNet.h TrainingLoop.h neural_net.h
+RECURSIVE              = YES
+FILE_PATTERNS          = *.cpp *.h
+GENERATE_LATEX           = YES
+USE_PDFLATEX             = YES
+GENERATE_HTML            = YES
+WARNINGS               = YES
+QUIET                  = NO
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+EXTRACT_ALL = YES
+EXTRACT_PRIVATE = YES
+EXTRACT_STATIC  = YES
+HAVE_DOT = YES
+USE_MATHJAX              = YES
+MATHJAX_RELPATH          = https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/
+MATHJAX_EXTENSIONS       =
