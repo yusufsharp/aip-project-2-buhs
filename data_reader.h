@@ -15,7 +15,7 @@
  *
  * @param images Вектор изображений, где каждое изображение представлено вектором значений пикселей.
  */
-void NormalizeData(std::vector<std::vector<double>>& images);
+void NormalizeData(std::vector<std::vector<double>> &images);
 
 /**
  * @brief Читает файл меток и возвращает вектор меток.
@@ -26,7 +26,7 @@ void NormalizeData(std::vector<std::vector<double>>& images);
  * @param filename Путь к файлу меток.
  * @return Вектор меток.
  */
-std::vector<unsigned char> readLabelFile(const std::string& filename);
+std::vector<unsigned char> readLabelFile(const std::string &filename);
 
 /**
  * @brief Читает файл изображений и возвращает вектор изображений.
@@ -39,7 +39,7 @@ std::vector<unsigned char> readLabelFile(const std::string& filename);
  * @param filename Путь к файлу изображений.
  * @return Вектор изображений, где каждое изображение представлено вектором значений пикселей.
  */
-std::vector<std::vector<double>> readImageFile(const std::string& filename);
+std::vector<std::vector<double>> readImageFile(const std::string &filename);
 
 /**
  * @brief Выводит изображение в консоль.
@@ -50,6 +50,6 @@ std::vector<std::vector<double>> readImageFile(const std::string& filename);
  * @param image Вектор значений пикселей изображения.
  * @param sideLength Длина стороны изображения.
  */
-void printImage(const std::vector<double>& image, int sideLength);
+void printImage(const std::vector<double> &image, int sideLength);
 
 #endif //AIP_PROJECT_2_BUHS_DATA_READER_H

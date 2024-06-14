@@ -3,7 +3,8 @@
 #include <iostream>
 #include "TrainingLoop.h"
 
-void trainNetwork(TensorsNet& net, const std::vector<std::vector<double>>& train_images, const std::vector<unsigned char>& train_labels, int epochs, double learning_rate, double momentum) {
+void trainNetwork(TensorsNet &net, const std::vector<std::vector<double>> &train_images,
+                  const std::vector<unsigned char> &train_labels, int epochs, double learning_rate, double momentum) {
     for (int epoch = 0; epoch < epochs; ++epoch) {
         std::cout << "Epoch: " << epoch << std::endl;
         double total_loss = 0.0;
@@ -18,7 +19,7 @@ void trainNetwork(TensorsNet& net, const std::vector<std::vector<double>>& train
             // Обратный проход
             //net.backwardPass(target_output, learning_rate, momentum);
 
-            for(auto & elm : net.graph[1][0].output_values){
+            for (auto &elm: net.graph[1][0].output_values) {
                 std::cout << elm << " ";
             }
             std::cout << '\n';
@@ -33,13 +34,13 @@ void trainNetwork(TensorsNet& net, const std::vector<std::vector<double>>& train
     }
 }
 
-void saveWeightsAndBiases(const TensorsNet& net, const std::string& filename1, const std::string& filename2) {
+void saveWeightsAndBiases(const TensorsNet &net, const std::string &filename1, const std::string &filename2) {
     std::ofstream file1(filename1);
     if (file1.is_open()) {
-        for (const auto& layer : net.graph) {
-            for (const auto& node : layer) {
-                for (const auto& weight : node.weights.data) {
-                    for (const auto& w : weight) {
+        for (const auto &layer: net.graph) {
+            for (const auto &node: layer) {
+                for (const auto &weight: node.weights.data) {
+                    for (const auto &w: weight) {
                         file1 << w << " ";
                     }
                     file1 << std::endl;
@@ -53,9 +54,9 @@ void saveWeightsAndBiases(const TensorsNet& net, const std::string& filename1, c
     }
     std::ofstream file2(filename1);
     if (file1.is_open()) {
-        for (const auto& layer : net.graph) {
-            for (const auto& node : layer) {
-                for (const auto& bias : node.biases) {
+        for (const auto &layer: net.graph) {
+            for (const auto &node: layer) {
+                for (const auto &bias: node.biases) {
                     file2 << bias << " ";
                 }
                 file2 << std::endl;
@@ -69,10 +70,10 @@ void saveWeightsAndBiases(const TensorsNet& net, const std::string& filename1, c
 }
 
 
-void predictDigit(TensorsNet& net, const std::vector<std::vector<double>>& image) {
+void predictDigit(TensorsNet &net, const std::vector<std::vector<double>> &image) {
     // Преобразуем матрицу 28x28 в одномерный вектор
     std::vector<double> input;
-    for (const auto& row : image) {
+    for (const auto &row: image) {
         input.insert(input.end(), row.begin(), row.end());
     }
 
@@ -80,7 +81,7 @@ void predictDigit(TensorsNet& net, const std::vector<std::vector<double>>& image
     net.forwardPass(input);
 
     // Получаем выходные значения
-    const std::vector<double>& output_values = net.graph.back().back().output_values;
+    const std::vector<double> &output_values = net.graph.back().back().output_values;
 
     // Ищем индекс максимального значения в выходных значениях
     auto max_iter = std::max_element(output_values.begin(), output_values.end());
@@ -91,7 +92,7 @@ void predictDigit(TensorsNet& net, const std::vector<std::vector<double>>& image
 
     // Также можно вывести все выходные значения для наглядности
     std::cout << "Output values: ";
-    for (const auto& value : output_values) {
+    for (const auto &value: output_values) {
         std::cout << value << " ";
     }
     std::cout << std::endl;

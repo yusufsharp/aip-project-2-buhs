@@ -1,15 +1,13 @@
 #include "data_reader.h"
 #include <algorithm>
 
-void NormalizeData(std::vector<std::vector<double>>& images)
-{
+void NormalizeData(std::vector<std::vector<double>> &images) {
     double minPixel = std::numeric_limits<double>::max();
     double maxPixel = std::numeric_limits<double>::min();
 
     // Находим минимальное и максимальное значения пикселей
-    for (const auto& image : images)
-    {
-        for (double pixel : image) {
+    for (const auto &image: images) {
+        for (double pixel: image) {
             minPixel = std::min(minPixel, pixel);
             maxPixel = std::max(maxPixel, pixel);
         }
@@ -19,8 +17,8 @@ void NormalizeData(std::vector<std::vector<double>>& images)
     double range = maxPixel - minPixel;
 
     // Нормализуем значения пикселей к диапазону от 0 до 1
-    for (auto& image : images) {
-        for (double& pixel : image){
+    for (auto &image: images) {
+        for (double &pixel: image) {
             pixel = (pixel - minPixel) / range;
         }
     }
@@ -102,7 +100,7 @@ std::vector<std::vector<double>> readImageFile(const std::string &filename) {
 #include <iostream>
 #include <vector>
 
-void printImage(const std::vector<double>& image, int sideLength) {
+void printImage(const std::vector<double> &image, int sideLength) {
     int imageSize = image.size();
     int numRows = imageSize / sideLength;
     int numCols = sideLength;

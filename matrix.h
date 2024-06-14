@@ -136,7 +136,7 @@ public:
      * @param other Другая матрица.
      * @return Результат сложения.
      */
-    [[nodiscard]] Matrix add(const Matrix& other) const;
+    [[nodiscard]] Matrix add(const Matrix &other) const;
 
     /**
      * @brief Умножает текущую матрицу на скаляр.
@@ -152,7 +152,7 @@ public:
      * @param other Другая матрица.
      * @return Результат умножения.
      */
-    [[nodiscard]] Matrix dot(const Matrix& other) const;
+    [[nodiscard]] Matrix dot(const Matrix &other) const;
 
     /**
      * @brief Поэлементно умножает текущую матрицу на другую матрицу.
@@ -160,7 +160,7 @@ public:
      * @param other Другая матрица.
      * @return Результат поэлементного умножения.
      */
-     void eachMul(const Matrix& other) const;
+    void eachMul(const Matrix &other) const;
 
     /**
      * @brief Умножает текущую матрицу на вектор.
@@ -168,7 +168,7 @@ public:
      * @param vec Вектор.
      * @return Результат умножения.
      */
-    [[nodiscard]] std::vector<double> dotVector(const std::vector<double>& vec) const;
+    [[nodiscard]] std::vector<double> dotVector(const std::vector<double> &vec) const;
 
     /**
      * @brief Умножает вектор на скаляр.
@@ -177,7 +177,7 @@ public:
      * @param coeff Скаляр.
      * @return Результат умножения.
      */
-    static std::vector<double> scalarMulVec(const std::vector<double> & vec, double coeff);
+    static std::vector<double> scalarMulVec(const std::vector<double> &vec, double coeff);
 
     /**
      * @brief Выполняет свёртку матрицы с весами и смещением.

@@ -8,7 +8,7 @@
 PaintApp::PaintApp()
         : window(sf::VideoMode(768, 512), "Paint"),
           isDrawing(false), isEraser(false), lineWidth(60.0f),
-          net(std::vector<size_t>{784, 128, 10}){
+          net(std::vector<size_t>{784, 128, 10}) {
     window.setFramerateLimit(60);
     window.setMouseCursorVisible(false); // Скрыть стандартный курсор мыши
 
@@ -158,7 +158,8 @@ void PaintApp::update() {
             previousMousePosition = currentMousePosition;
         }
     }
-    pencilSprite.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window))); // Обновляем позицию спрайта карандаша
+    pencilSprite.setPosition(
+            static_cast<sf::Vector2f>(sf::Mouse::getPosition(window))); // Обновляем позицию спрайта карандаша
 }
 
 void PaintApp::render() {
@@ -211,7 +212,7 @@ sf::Image PaintApp::captureCanvas() {
     return canvas.getTexture().copyToImage();
 }
 
-sf::Image PaintApp::resizeImage(const sf::Image& image, unsigned int width, unsigned int height) {
+sf::Image PaintApp::resizeImage(const sf::Image &image, unsigned int width, unsigned int height) {
     sf::Image resizedImage;
     resizedImage.create(20, 20, sf::Color::Black); // Сначала создаем изображение 20x20
 
@@ -257,7 +258,7 @@ sf::Image PaintApp::resizeImage(const sf::Image& image, unsigned int width, unsi
     return finalImage;
 }
 
-void PaintApp::saveImageAsText(const sf::Image& image, const std::string& filename) {
+void PaintApp::saveImageAsText(const sf::Image &image, const std::string &filename) {
     std::ofstream file(filename);
     if (file.is_open()) {
         sf::Vector2u size = image.getSize();

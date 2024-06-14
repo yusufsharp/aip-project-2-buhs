@@ -8,24 +8,25 @@
 #include <string>
 
 Matrix::Matrix() = default;
-Matrix::Matrix(size_t rows, size_t cols) : data(rows, std::vector<double>(cols, 0.0)){}
+
+Matrix::Matrix(size_t rows, size_t cols) : data(rows, std::vector<double>(cols, 0.0)) {}
 
 size_t Matrix::getRows() const { return data.size(); }
+
 size_t Matrix::getCols() const { return data.empty() ? 0 : data[0].size(); }
 
 
 void Matrix::setElement(size_t row, size_t col, double value) {
     if (row < getRows() && col < getCols()) {
         data[row][col] = value;
-    }
-    else{
+    } else {
         std::cout << "Неверный индекс" << '\n';
     }
 }
 
 void Matrix::printMatrix() const {
-    for (const std::vector<double> & row : data) {
-        for (const double & element : row) {
+    for (const std::vector<double> &row: data) {
+        for (const double &element: row) {
             std::cout << element << " ";
         }
         std::cout << std::endl;
@@ -49,7 +50,7 @@ Matrix Matrix::t() const {
     return transposed;
 }
 
-Matrix Matrix::add(const Matrix& other) const {
+Matrix Matrix::add(const Matrix &other) const {
     if (getRows() != other.getRows() || getCols() != other.getCols()) {
         // ошибка если размеры матриц не совпадают
         return {};
@@ -84,7 +85,7 @@ Matrix Matrix::dot(const Matrix &other) const {
     return result;
 }
 
-void Matrix::eachMul(const Matrix& other) const{
+void Matrix::eachMul(const Matrix &other) const {
     if (getRows() != other.getRows() || getCols() != other.getCols()) {
         // ошибка если размеры не равны
         std::cerr << "Разные размерности!" << std::endl;
@@ -99,7 +100,7 @@ void Matrix::eachMul(const Matrix& other) const{
     }
 }
 
-std::vector<double> Matrix::dotVector(const std::vector<double>& vec) const {
+std::vector<double> Matrix::dotVector(const std::vector<double> &vec) const {
     if (vec.size() != getCols()) {
         // ошибка если размер вектора не соответствует количеству столбцов матрицы
         return {};
@@ -115,14 +116,14 @@ std::vector<double> Matrix::dotVector(const std::vector<double>& vec) const {
 }
 
 
-double Matrix::genRandom(){ //генерация от 0 до 1
+double Matrix::genRandom() { //генерация от 0 до 1
     static std::random_device rd;
     static std::mt19937 gen(rd());
     static std::uniform_real_distribution<> dis(-1.0, 1.0);
     return dis(gen);
 }
 
-std::vector<double> Matrix::sumVecs(std::vector<double> vec1, std::vector<double> vec2){
+std::vector<double> Matrix::sumVecs(std::vector<double> vec1, std::vector<double> vec2) {
     std::vector<double> vec3(vec1.size(), 0.0);
     for (size_t i = 0; i < vec1.size(); ++i) {
         vec3[i] = vec1[i] + vec2[i];
@@ -130,7 +131,7 @@ std::vector<double> Matrix::sumVecs(std::vector<double> vec1, std::vector<double
     return vec3;
 }
 
-std::vector<double> Matrix::subVecs(std::vector<double> vec1, std::vector<double> vec2){
+std::vector<double> Matrix::subVecs(std::vector<double> vec1, std::vector<double> vec2) {
     std::vector<double> vec3(vec1.size(), 0.0);
     for (size_t i = 0; i < vec1.size(); ++i) {
         vec3[i] = vec1[i] - vec2[i];
@@ -138,7 +139,7 @@ std::vector<double> Matrix::subVecs(std::vector<double> vec1, std::vector<double
     return vec3;
 }
 
-double Matrix::dotprodVecs(std::vector<double> vec1, std::vector<double> vec2){
+double Matrix::dotprodVecs(std::vector<double> vec1, std::vector<double> vec2) {
     double sum = 0.0;
     for (size_t i = 0; i < vec1.size(); ++i) {
         sum += vec1[i] * vec2[i];
@@ -146,7 +147,7 @@ double Matrix::dotprodVecs(std::vector<double> vec1, std::vector<double> vec2){
     return sum;
 }
 
-std::vector<double> Matrix::eachmulVecs(std::vector<double> vec1, std::vector<double> vec2){
+std::vector<double> Matrix::eachmulVecs(std::vector<double> vec1, std::vector<double> vec2) {
     std::vector<double> vec3(vec1.size(), 0.0);
     for (size_t i = 0; i < vec1.size(); ++i) {
         vec3[i] = vec1[i] * vec2[i];
@@ -154,13 +155,13 @@ std::vector<double> Matrix::eachmulVecs(std::vector<double> vec1, std::vector<do
     return vec3;
 }
 
-Matrix Matrix::ij_mul(std::vector<double> vec1, std::vector<double> vec2){
-    const size_t & n = vec1.size();
-    const size_t & m = vec2.size();
+Matrix Matrix::ij_mul(std::vector<double> vec1, std::vector<double> vec2) {
+    const size_t &n = vec1.size();
+    const size_t &m = vec2.size();
     Matrix res(n, m);
     for (size_t i = 0; i < n; ++i) {
-        for(size_t j = 0; j < m; ++j){
-            res.setElement(i, j, vec1[i]*vec2[j]);
+        for (size_t j = 0; j < m; ++j) {
+            res.setElement(i, j, vec1[i] * vec2[j]);
         }
     }
     return res;
@@ -185,10 +186,10 @@ std::vector<double> Matrix::scalarMulVec(const std::vector<double> &vec, double 
     return result;
 }
 
-double Matrix::convDot(size_t i1, size_t i2, size_t j1, size_t j2, Matrix weights, double bias) const{
+double Matrix::convDot(size_t i1, size_t i2, size_t j1, size_t j2, Matrix weights, double bias) const {
     double sum = 0;
-    for(size_t i = i1; i <= i2; ++i){
-        for(size_t j = j1; j <= j2; ++j){
+    for (size_t i = i1; i <= i2; ++i) {
+        for (size_t j = j1; j <= j2; ++j) {
             sum += getElement(i, j) * weights.getElement(i, j);
         }
     }
@@ -213,11 +214,11 @@ Matrix Matrix::vecReshape(std::vector<double> vec, size_t size) {
     return M;
 }
 
-void Matrix::addVec(const std::vector<double>& rowVector) {
+void Matrix::addVec(const std::vector<double> &rowVector) {
     data.push_back(rowVector);
 }
 
-Matrix Matrix::readMatrix(const std::string& file_path){
+Matrix Matrix::readMatrix(const std::string &file_path) {
     std::ifstream file(file_path); // Открываем файл
     if (!file.is_open()) {
         std::cerr << "Не удалось открыть файл!" << std::endl;
@@ -239,7 +240,7 @@ Matrix Matrix::readMatrix(const std::string& file_path){
     return M;
 }
 
-std::vector<double> Matrix::readVector(const std::string& file_path){
+std::vector<double> Matrix::readVector(const std::string &file_path) {
     std::ifstream file(file_path); // Открываем файл
     if (!file.is_open()) {
         std::cerr << "Не удалось открыть файл!" << std::endl;

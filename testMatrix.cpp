@@ -188,3 +188,38 @@ TEST(TensorsNetTest, ReluFunctionDerived) {
     ASSERT_EQ(derived[2], 1.0);
     ASSERT_EQ(derived[3], 1.0);
 }
+
+TEST(TensorsNetTest, AddLayerNegative) {
+    TensorsNet net({2, 3});
+
+    // Попытка добавить слой с неправильным размером
+    net.addLayer(0, 0, 0);
+
+    // Проверяем, что слой не добавлен
+    ASSERT_EQ(net.graph.size(), 1);
+}
+
+TEST(MatrixTest, AddNegative) {
+    Matrix mat1(2, 2);
+    mat1.setElement(0, 0, 1.0);
+    mat1.setElement(0, 1, 2.0);
+    mat1.setElement(1, 0, 3.0);
+    mat1.setElement(1, 1, 4.0);
+
+    // Попытка добавить матрицу с неправильными размерами
+    Matrix mat3(3, 3);
+    Matrix result = mat1.add(mat3);
+    EXPECT_EQ(result.getRows(), 0);
+    EXPECT_EQ(result.getCols(), 0);
+
+    // Попытка добавить матрицу с отрицательными размерами
+    try {
+        Matrix mat4(-1, -1);
+        Matrix result2 = mat1.add(mat4);
+        FAIL() << "Expected std::length_error";
+    } catch (const std::length_error &e) {
+        EXPECT_STREQ("cannot create std::vector larger than max_size()", e.what());
+    } catch (const std::exception &e) {
+        FAIL() << "Expected std::length_error, but got: " << e.what();
+    }
+}

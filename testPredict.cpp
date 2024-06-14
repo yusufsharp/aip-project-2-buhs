@@ -8,7 +8,8 @@
 // Mock class for TensorsNet
 class MockTensorsNet : public TensorsNet {
 public:
-    MockTensorsNet(const std::vector<size_t>& all_layers) : TensorsNet(all_layers) {}
+    MockTensorsNet(const std::vector<size_t> &all_layers) : TensorsNet(all_layers) {}
+
     MOCK_METHOD(void, forwardPass, (const std::vector<double>& input), (override));
 
 
@@ -50,17 +51,19 @@ TEST(FlattenMatrixTest, ValidMatrix) {
 TEST(ReadMatrixFromFileTest, ValidFile) {
     std::vector<std::vector<double>> matrix = readMatrixFromFile("../drawing_28x28.txt", 28, 28);
     EXPECT_EQ(matrix.size(), 28);
-    for (const auto& row : matrix) {
+    for (const auto &row: matrix) {
         EXPECT_EQ(row.size(), 28);
     }
 }
+
 TEST(DataNormalizationTest, NormalizeData) {
-    std::vector<std::vector<double>> images = {{0.0, 50.0, 100.0}, {150.0, 200.0, 255.0}};
+    std::vector<std::vector<double>> images = {{0.0,   50.0,  100.0},
+                                               {150.0, 200.0, 255.0}};
     NormalizeData(images);
 
     // Проверяем, что данные нормализованы в диапазоне от 0 до 1
-    for (const auto& image : images) {
-        for (double pixel : image) {
+    for (const auto &image: images) {
+        for (double pixel: image) {
             EXPECT_GE(pixel, 0.0);
             EXPECT_LE(pixel, 1.0);
         }
@@ -77,7 +80,7 @@ TEST(ReadLabelFileTest, ReadLabelFile) {
     unsigned char labels[3] = {1, 2, 3};
     file.write(magicNumber, 4);
     file.write(numLabelsBytes, 4);
-    file.write(reinterpret_cast<char*>(labels), 3);
+    file.write(reinterpret_cast<char *>(labels), 3);
     file.close();
 
     std::vector<unsigned char> readLabels = readLabelFile(filename);
@@ -106,15 +109,15 @@ TEST(ReadImageFileTest, ReadImageFile) {
     file.write(numImagesBytes, 4);
     file.write(numRowsBytes, 4);
     file.write(numColsBytes, 4);
-    file.write(reinterpret_cast<char*>(images), 8);
+    file.write(reinterpret_cast<char *>(images), 8);
     file.close();
 
     std::vector<std::vector<double>> readImages = readImageFile(filename);
 
     // Проверяем, что изображения считаны и нормализованы корректно
     ASSERT_EQ(readImages.size(), 2);
-    for (const auto& image : readImages) {
-        for (double pixel : image) {
+    for (const auto &image: readImages) {
+        for (double pixel: image) {
             EXPECT_GE(pixel, 0.0);
             EXPECT_LE(pixel, 1.0);
         }

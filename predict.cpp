@@ -5,7 +5,7 @@
 #include "TensorsNet.h"
 #include <algorithm>
 
-std::vector<std::vector<double>> readMatrixFromFile(const std::string& filename, int rows, int cols) {
+std::vector<std::vector<double>> readMatrixFromFile(const std::string &filename, int rows, int cols) {
     std::ifstream file(filename);
     std::vector<std::vector<double>> matrix(rows, std::vector<double>(cols));
 
@@ -26,15 +26,15 @@ std::vector<std::vector<double>> readMatrixFromFile(const std::string& filename,
     return matrix;
 }
 
-std::vector<double> flattenMatrix(const std::vector<std::vector<double>>& matrix) {
+std::vector<double> flattenMatrix(const std::vector<std::vector<double>> &matrix) {
     std::vector<double> flat_matrix;
-    for (const auto& row : matrix) {
+    for (const auto &row: matrix) {
         flat_matrix.insert(flat_matrix.end(), row.begin(), row.end());
     }
     return flat_matrix;
 }
 
-int predictDigit(TensorsNet& net, const std::string& filename) {
+int predictDigit(TensorsNet &net, const std::string &filename) {
     // Step 1: Read the matrix from the file
     std::vector<std::vector<double>> matrix = readMatrixFromFile(filename, 28, 28);
 
@@ -50,7 +50,7 @@ int predictDigit(TensorsNet& net, const std::string& filename) {
 
     // Print the predicted digit
     std::cout << "Predicted Digit: " << predicted_digit << std::endl;
-    for (auto & elm : output){
+    for (auto &elm: output) {
         std::cout << elm << ' ';
     }
     std::cout << '\n';

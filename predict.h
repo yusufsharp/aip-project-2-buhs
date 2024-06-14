@@ -23,7 +23,7 @@
  * @param cols Количество столбцов.
  * @return Считанная матрица.
  */
-std::vector<std::vector<double>> readMatrixFromFile(const std::string& filename, int rows, int cols);
+std::vector<std::vector<double>> readMatrixFromFile(const std::string &filename, int rows, int cols);
 
 /**
  * @brief Преобразует матрицу в одномерный вектор.
@@ -33,7 +33,7 @@ std::vector<std::vector<double>> readMatrixFromFile(const std::string& filename,
  * @param matrix Исходная матрица.
  * @return Одномерный вектор.
  */
-std::vector<double> flattenMatrix(const std::vector<std::vector<double>>& matrix);
+std::vector<double> flattenMatrix(const std::vector<std::vector<double>> &matrix);
 
 /**
  * @brief Предсказывает цифру на изображении.
@@ -45,6 +45,6 @@ std::vector<double> flattenMatrix(const std::vector<std::vector<double>>& matrix
  * @param filename Путь к файлу изображения.
  * @return Предсказанная цифра.
  */
-int predictDigit(TensorsNet& net, const std::string& filename);
+int predictDigit(TensorsNet &net, const std::string &filename);
 
 #endif // AIP_PROJECT_2_BUHS_PREDICT_H
