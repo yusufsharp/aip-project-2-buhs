@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dima/project_cpp/aip-project-2-buhs
+CMAKE_SOURCE_DIR = /home/dima/programm_cpp/aip-project-2-buhs
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dima/project_cpp/aip-project-2-buhs/build
+CMAKE_BINARY_DIR = /home/dima/programm_cpp/aip-project-2-buhs/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -85,11 +85,56 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"gmock\" \"gtest\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dima/project_cpp/aip-project-2-buhs/build/CMakeFiles /home/dima/project_cpp/aip-project-2-buhs/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dima/programm_cpp/aip-project-2-buhs/build/CMakeFiles /home/dima/programm_cpp/aip-project-2-buhs/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dima/project_cpp/aip-project-2-buhs/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dima/programm_cpp/aip-project-2-buhs/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,24 +162,222 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named paint_app
+# Target rules for targets named aip_project_2_buhs
 
 # Build rule for target.
-paint_app: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 paint_app
-.PHONY : paint_app
+aip_project_2_buhs: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 aip_project_2_buhs
+.PHONY : aip_project_2_buhs
 
 # fast build rule for target.
-paint_app/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/paint_app.dir/build.make CMakeFiles/paint_app.dir/build
-.PHONY : paint_app/fast
+aip_project_2_buhs/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/build
+.PHONY : aip_project_2_buhs/fast
+
+#=============================================================================
+# Target rules for targets named runTests
+
+# Build rule for target.
+runTests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 runTests
+.PHONY : runTests
+
+# fast build rule for target.
+runTests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/build
+.PHONY : runTests/fast
+
+#=============================================================================
+# Target rules for targets named gmock
+
+# Build rule for target.
+gmock: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock
+.PHONY : gmock
+
+# fast build rule for target.
+gmock/fast:
+	$(MAKE) $(MAKESILENT) -f external/googletest-main/googlemock/CMakeFiles/gmock.dir/build.make external/googletest-main/googlemock/CMakeFiles/gmock.dir/build
+.PHONY : gmock/fast
+
+#=============================================================================
+# Target rules for targets named gmock_main
+
+# Build rule for target.
+gmock_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_main
+.PHONY : gmock_main
+
+# fast build rule for target.
+gmock_main/fast:
+	$(MAKE) $(MAKESILENT) -f external/googletest-main/googlemock/CMakeFiles/gmock_main.dir/build.make external/googletest-main/googlemock/CMakeFiles/gmock_main.dir/build
+.PHONY : gmock_main/fast
+
+#=============================================================================
+# Target rules for targets named gtest
+
+# Build rule for target.
+gtest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest
+.PHONY : gtest
+
+# fast build rule for target.
+gtest/fast:
+	$(MAKE) $(MAKESILENT) -f external/googletest-main/googletest/CMakeFiles/gtest.dir/build.make external/googletest-main/googletest/CMakeFiles/gtest.dir/build
+.PHONY : gtest/fast
+
+#=============================================================================
+# Target rules for targets named gtest_main
+
+# Build rule for target.
+gtest_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main
+.PHONY : gtest_main
+
+# fast build rule for target.
+gtest_main/fast:
+	$(MAKE) $(MAKESILENT) -f external/googletest-main/googletest/CMakeFiles/gtest_main.dir/build.make external/googletest-main/googletest/CMakeFiles/gtest_main.dir/build
+.PHONY : gtest_main/fast
+
+TensorsNet.o: TensorsNet.cpp.o
+.PHONY : TensorsNet.o
+
+# target to build an object file
+TensorsNet.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/TensorsNet.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/TensorsNet.cpp.o
+.PHONY : TensorsNet.cpp.o
+
+TensorsNet.i: TensorsNet.cpp.i
+.PHONY : TensorsNet.i
+
+# target to preprocess a source file
+TensorsNet.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/TensorsNet.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/TensorsNet.cpp.i
+.PHONY : TensorsNet.cpp.i
+
+TensorsNet.s: TensorsNet.cpp.s
+.PHONY : TensorsNet.s
+
+# target to generate assembly for a file
+TensorsNet.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/TensorsNet.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/TensorsNet.cpp.s
+.PHONY : TensorsNet.cpp.s
+
+TrainingLoop.o: TrainingLoop.cpp.o
+.PHONY : TrainingLoop.o
+
+# target to build an object file
+TrainingLoop.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/TrainingLoop.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/TrainingLoop.cpp.o
+.PHONY : TrainingLoop.cpp.o
+
+TrainingLoop.i: TrainingLoop.cpp.i
+.PHONY : TrainingLoop.i
+
+# target to preprocess a source file
+TrainingLoop.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/TrainingLoop.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/TrainingLoop.cpp.i
+.PHONY : TrainingLoop.cpp.i
+
+TrainingLoop.s: TrainingLoop.cpp.s
+.PHONY : TrainingLoop.s
+
+# target to generate assembly for a file
+TrainingLoop.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/TrainingLoop.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/TrainingLoop.cpp.s
+.PHONY : TrainingLoop.cpp.s
+
+data_reader.o: data_reader.cpp.o
+.PHONY : data_reader.o
+
+# target to build an object file
+data_reader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/data_reader.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/data_reader.cpp.o
+.PHONY : data_reader.cpp.o
+
+data_reader.i: data_reader.cpp.i
+.PHONY : data_reader.i
+
+# target to preprocess a source file
+data_reader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/data_reader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/data_reader.cpp.i
+.PHONY : data_reader.cpp.i
+
+data_reader.s: data_reader.cpp.s
+.PHONY : data_reader.s
+
+# target to generate assembly for a file
+data_reader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/data_reader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/data_reader.cpp.s
+.PHONY : data_reader.cpp.s
+
+main.o: main.cpp.o
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/main.cpp.s
+.PHONY : main.cpp.s
+
+matrix.o: matrix.cpp.o
+.PHONY : matrix.o
+
+# target to build an object file
+matrix.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/matrix.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/matrix.cpp.o
+.PHONY : matrix.cpp.o
+
+matrix.i: matrix.cpp.i
+.PHONY : matrix.i
+
+# target to preprocess a source file
+matrix.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/matrix.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/matrix.cpp.i
+.PHONY : matrix.cpp.i
+
+matrix.s: matrix.cpp.s
+.PHONY : matrix.s
+
+# target to generate assembly for a file
+matrix.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/matrix.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/matrix.cpp.s
+.PHONY : matrix.cpp.s
 
 neural_net.o: neural_net.cpp.o
 .PHONY : neural_net.o
 
 # target to build an object file
 neural_net.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/paint_app.dir/build.make CMakeFiles/paint_app.dir/neural_net.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/neural_net.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/neural_net.cpp.o
 .PHONY : neural_net.cpp.o
 
 neural_net.i: neural_net.cpp.i
@@ -142,7 +385,8 @@ neural_net.i: neural_net.cpp.i
 
 # target to preprocess a source file
 neural_net.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/paint_app.dir/build.make CMakeFiles/paint_app.dir/neural_net.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/neural_net.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/neural_net.cpp.i
 .PHONY : neural_net.cpp.i
 
 neural_net.s: neural_net.cpp.s
@@ -150,15 +394,44 @@ neural_net.s: neural_net.cpp.s
 
 # target to generate assembly for a file
 neural_net.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/paint_app.dir/build.make CMakeFiles/paint_app.dir/neural_net.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/neural_net.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/neural_net.cpp.s
 .PHONY : neural_net.cpp.s
+
+predict.o: predict.cpp.o
+.PHONY : predict.o
+
+# target to build an object file
+predict.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/predict.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/predict.cpp.o
+.PHONY : predict.cpp.o
+
+predict.i: predict.cpp.i
+.PHONY : predict.i
+
+# target to preprocess a source file
+predict.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/predict.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/predict.cpp.i
+.PHONY : predict.cpp.i
+
+predict.s: predict.cpp.s
+.PHONY : predict.s
+
+# target to generate assembly for a file
+predict.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/predict.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/predict.cpp.s
+.PHONY : predict.cpp.s
 
 program.o: program.cpp.o
 .PHONY : program.o
 
 # target to build an object file
 program.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/paint_app.dir/build.make CMakeFiles/paint_app.dir/program.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/program.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/program.cpp.o
 .PHONY : program.cpp.o
 
 program.i: program.cpp.i
@@ -166,7 +439,8 @@ program.i: program.cpp.i
 
 # target to preprocess a source file
 program.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/paint_app.dir/build.make CMakeFiles/paint_app.dir/program.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/program.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/program.cpp.i
 .PHONY : program.cpp.i
 
 program.s: program.cpp.s
@@ -174,8 +448,33 @@ program.s: program.cpp.s
 
 # target to generate assembly for a file
 program.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/paint_app.dir/build.make CMakeFiles/paint_app.dir/program.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/program.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/program.cpp.s
 .PHONY : program.cpp.s
+
+test.o: test.cpp.o
+.PHONY : test.o
+
+# target to build an object file
+test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test.cpp.o
+.PHONY : test.cpp.o
+
+test.i: test.cpp.i
+.PHONY : test.i
+
+# target to preprocess a source file
+test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test.cpp.i
+.PHONY : test.cpp.i
+
+test.s: test.cpp.s
+.PHONY : test.s
+
+# target to generate assembly for a file
+test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test.cpp.s
+.PHONY : test.cpp.s
 
 # Help Target
 help:
@@ -184,14 +483,44 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... paint_app"
+	@echo "... aip_project_2_buhs"
+	@echo "... gmock"
+	@echo "... gmock_main"
+	@echo "... gtest"
+	@echo "... gtest_main"
+	@echo "... runTests"
+	@echo "... TensorsNet.o"
+	@echo "... TensorsNet.i"
+	@echo "... TensorsNet.s"
+	@echo "... TrainingLoop.o"
+	@echo "... TrainingLoop.i"
+	@echo "... TrainingLoop.s"
+	@echo "... data_reader.o"
+	@echo "... data_reader.i"
+	@echo "... data_reader.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
+	@echo "... matrix.o"
+	@echo "... matrix.i"
+	@echo "... matrix.s"
 	@echo "... neural_net.o"
 	@echo "... neural_net.i"
 	@echo "... neural_net.s"
+	@echo "... predict.o"
+	@echo "... predict.i"
+	@echo "... predict.s"
 	@echo "... program.o"
 	@echo "... program.i"
 	@echo "... program.s"
+	@echo "... test.o"
+	@echo "... test.i"
+	@echo "... test.s"
 .PHONY : help
 
 

@@ -11,20 +11,36 @@ public:
     PaintApp();
     void run();
 
-private:
-    void processEvents();
-    void update();
-    void render();
-    void handleMouseInput(sf::Vector2i position, bool isPressed);
-    void handleButtonClick(sf::Vector2i position);
+    bool isEraser;
+
     void toggleTool();
-    void clearCanvas();
+
     sf::Image captureCanvas();
+
+    void clearCanvas();
+
     sf::Image resizeImage(const sf::Image& image, unsigned int width, unsigned int height);
+
     void saveImageAsText(const sf::Image& image, const std::string& filename);
-    void drawUI();
+
+    void handleMouseInput(sf::Vector2i position, bool isPressed);
+
+    void handleButtonClick(sf::Vector2i position);
+
+    bool isDrawing;
+
+    void update();
 
     sf::RenderWindow window;
+
+    void processEvents();
+
+private:
+
+    void render();
+
+    void drawUI();
+
     sf::RenderTexture canvas;
     sf::Sprite canvasSprite;
     sf::RectangleShape background;
@@ -36,8 +52,6 @@ private:
     sf::Text saveButtonText;
     sf::Text clearButtonText;
     sf::Text resultText;
-    bool isDrawing;
-    bool isEraser;
     sf::Vector2i previousMousePosition;
     sf::Texture pencilTexture;
     sf::Sprite pencilSprite;

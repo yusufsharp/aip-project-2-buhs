@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/runTestsMatrix.dir/matrix.cpp.o CMakeFiles/runTestsMatrix.dir/testMatrix.cpp.o -o runTestsMatrix  lib/libgtest.a lib/libgtest_main.a lib/libgtest.a 
