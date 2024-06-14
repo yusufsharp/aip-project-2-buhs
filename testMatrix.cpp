@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "matrix.h"
+#include "TensorsNet.h"
 
 // Тесты для конструктора Matrix
 TEST(MatrixTest, Constructor) {
@@ -116,4 +117,74 @@ TEST(MatrixTest, Dot) {
     Matrix result2 = mat1.dot(mat3);
     EXPECT_EQ(result2.getRows(), 0);
     EXPECT_EQ(result2.getCols(), 0);
+}
+// Тест для конструктора TensorsNet
+TEST(TensorsNetTest, Constructor) {
+    std::vector<size_t> layers = {2, 3, 1};
+    TensorsNet net(layers);
+
+    // Проверяем, что граф создан корректно
+    ASSERT_EQ(net.graph.size(), 2);
+    ASSERT_EQ(net.graph[0].size(), 1);
+    ASSERT_EQ(net.graph[1].size(), 1);
+
+    // Проверяем размеры матриц весов
+    ASSERT_EQ(net.graph[0][0].weights.getRows(), 3);
+    ASSERT_EQ(net.graph[0][0].weights.getCols(), 2);
+    ASSERT_EQ(net.graph[1][0].weights.getRows(), 1);
+    ASSERT_EQ(net.graph[1][0].weights.getCols(), 3);
+}
+
+// Тест для метода addLayer
+TEST(TensorsNetTest, AddLayer) {
+    TensorsNet net({2, 3});
+
+    // Проверяем, что слой добавлен корректно
+    ASSERT_EQ(net.graph.size(), 1);
+    ASSERT_EQ(net.graph[0].size(), 1);
+    ASSERT_EQ(net.graph[0][0].weights.getRows(), 3);
+    ASSERT_EQ(net.graph[0][0].weights.getCols(), 2);
+    ASSERT_EQ(net.graph[0][0].biases.size(), 3);
+    ASSERT_EQ(net.graph[0][0].d_biases.size(), 3);
+    ASSERT_EQ(net.graph[0][0].output_values.size(), 3);
+    ASSERT_EQ(net.graph[0][0].layer_type, 0);
+}
+
+// Тест для метода forwardPass
+TEST(TensorsNetTest, ForwardPass) {
+    std::vector<size_t> layers = {2, 3, 1};
+    TensorsNet net(layers);
+
+    std::vector<double> inputs = {1.0, 2.0};
+    net.forwardPass(inputs);
+
+    // Проверяем, что выходные значения первого слоя корректны
+    ASSERT_EQ(net.graph[0][0].output_values.size(), 3);
+
+    // Проверяем, что выходные значения второго слоя корректны
+    ASSERT_EQ(net.graph[1][0].output_values.size(), 1);
+}
+
+// Тест для метода relu_function
+TEST(TensorsNetTest, ReluFunction) {
+    std::vector<double> values = {-1.0, 0.0, 1.0, 2.0};
+    TensorsNet::relu_function(values);
+
+    // Проверяем, что значения после применения ReLU корректны
+    ASSERT_EQ(values[0], 0.0);
+    ASSERT_EQ(values[1], 0.0);
+    ASSERT_EQ(values[2], 1.0);
+    ASSERT_EQ(values[3], 2.0);
+}
+
+// Тест для метода relu_function_derived
+TEST(TensorsNetTest, ReluFunctionDerived) {
+    std::vector<double> values = {-1.0, 0.0, 1.0, 2.0};
+    std::vector<double> derived = TensorsNet::relu_function_derived(values);
+
+    // Проверяем, что значения после применения производной ReLU корректны
+    ASSERT_EQ(derived[0], 0.0);
+    ASSERT_EQ(derived[1], 0.0);
+    ASSERT_EQ(derived[2], 1.0);
+    ASSERT_EQ(derived[3], 1.0);
 }

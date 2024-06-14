@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/dima/programm_cpp/aip-project-2-buhs/TensorsNet.cpp" "CMakeFiles/runTestsMatrix.dir/TensorsNet.cpp.o" "gcc" "CMakeFiles/runTestsMatrix.dir/TensorsNet.cpp.o.d"
   "/home/dima/programm_cpp/aip-project-2-buhs/matrix.cpp" "CMakeFiles/runTestsMatrix.dir/matrix.cpp.o" "gcc" "CMakeFiles/runTestsMatrix.dir/matrix.cpp.o.d"
   "/home/dima/programm_cpp/aip-project-2-buhs/testMatrix.cpp" "CMakeFiles/runTestsMatrix.dir/testMatrix.cpp.o" "gcc" "CMakeFiles/runTestsMatrix.dir/testMatrix.cpp.o.d"
   )

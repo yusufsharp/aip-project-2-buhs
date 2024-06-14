@@ -28,8 +28,9 @@ public:
     void addLayer(size_t num_input, size_t num_output, size_t layer_type);
     void convForward(const std::vector<double> &inputs, size_t conv_index);
     std::vector<std::vector<Layer>> graph;
-private:
+
     static void relu_function(std::vector<double> & nonactive);
+
     static std::vector<double> relu_function_derived(const std::vector<double> &nonderived);
 };
 

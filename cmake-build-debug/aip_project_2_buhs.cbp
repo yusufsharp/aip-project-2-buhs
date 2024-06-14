@@ -493,11 +493,13 @@
 		<Unit filename="/home/dima/programm_cpp/aip-project-2-buhs/TensorsNet.cpp">
 			<Option target="aip_project_2_buhs"/>
 			<Option target="runTestsApp"/>
+			<Option target="runTestsMatrix"/>
 			<Option target="runTestsPredict"/>
 		</Unit>
 		<Unit filename="/home/dima/programm_cpp/aip-project-2-buhs/TensorsNet.h">
 			<Option target="aip_project_2_buhs"/>
 			<Option target="runTestsApp"/>
+			<Option target="runTestsMatrix"/>
 			<Option target="runTestsPredict"/>
 		</Unit>
 		<Unit filename="/home/dima/programm_cpp/aip-project-2-buhs/TrainingLoop.cpp">

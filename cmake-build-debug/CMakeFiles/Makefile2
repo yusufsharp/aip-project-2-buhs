@@ -194,12 +194,12 @@ CMakeFiles/runTestsMatrix.dir/all: external/googletest-main/googletest/CMakeFile
 CMakeFiles/runTestsMatrix.dir/all: external/googletest-main/googletest/CMakeFiles/gtest_main.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTestsMatrix.dir/build.make CMakeFiles/runTestsMatrix.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTestsMatrix.dir/build.make CMakeFiles/runTestsMatrix.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/dima/programm_cpp/aip-project-2-buhs/cmake-build-debug/CMakeFiles --progress-num=27,28,29 "Built target runTestsMatrix"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/dima/programm_cpp/aip-project-2-buhs/cmake-build-debug/CMakeFiles --progress-num=27,28,29,30 "Built target runTestsMatrix"
 .PHONY : CMakeFiles/runTestsMatrix.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/runTestsMatrix.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dima/programm_cpp/aip-project-2-buhs/cmake-build-debug/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dima/programm_cpp/aip-project-2-buhs/cmake-build-debug/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/runTestsMatrix.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dima/programm_cpp/aip-project-2-buhs/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/runTestsMatrix.dir/rule
@@ -223,7 +223,7 @@ CMakeFiles/runTestsPredict.dir/all: external/googletest-main/googletest/CMakeFil
 CMakeFiles/runTestsPredict.dir/all: external/googletest-main/googletest/CMakeFiles/gtest_main.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTestsPredict.dir/build.make CMakeFiles/runTestsPredict.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTestsPredict.dir/build.make CMakeFiles/runTestsPredict.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/dima/programm_cpp/aip-project-2-buhs/cmake-build-debug/CMakeFiles --progress-num=30,31,32,33,34,35,36,37,38 "Built target runTestsPredict"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/dima/programm_cpp/aip-project-2-buhs/cmake-build-debug/CMakeFiles --progress-num=31,32,33,34,35,36,37,38,39 "Built target runTestsPredict"
 .PHONY : CMakeFiles/runTestsPredict.dir/all
 
 # Build rule for subdir invocation for target.

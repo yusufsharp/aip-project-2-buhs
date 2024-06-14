@@ -350,4 +350,9 @@ CMakeFiles/runTestsPredict.dir/testPredict.cpp.o: \
  /usr/include/c++/11/bits/random.tcc /usr/include/c++/11/numeric \
  /usr/include/c++/11/bits/stl_numeric.h \
  /usr/include/c++/11/pstl/glue_numeric_defs.h \
- /home/dima/programm_cpp/aip-project-2-buhs/predict.h
+ /home/dima/programm_cpp/aip-project-2-buhs/predict.h \
+ /home/dima/programm_cpp/aip-project-2-buhs/data_reader.h \
+ /usr/include/c++/11/fstream \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+ /usr/include/c++/11/bits/fstream.tcc

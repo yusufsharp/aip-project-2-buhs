@@ -282,6 +282,7 @@ TensorsNet.o: TensorsNet.cpp.o
 TensorsNet.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/TensorsNet.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTestsApp.dir/build.make CMakeFiles/runTestsApp.dir/TensorsNet.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTestsMatrix.dir/build.make CMakeFiles/runTestsMatrix.dir/TensorsNet.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTestsPredict.dir/build.make CMakeFiles/runTestsPredict.dir/TensorsNet.cpp.o
 .PHONY : TensorsNet.cpp.o
 
@@ -292,6 +293,7 @@ TensorsNet.i: TensorsNet.cpp.i
 TensorsNet.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/TensorsNet.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTestsApp.dir/build.make CMakeFiles/runTestsApp.dir/TensorsNet.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTestsMatrix.dir/build.make CMakeFiles/runTestsMatrix.dir/TensorsNet.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTestsPredict.dir/build.make CMakeFiles/runTestsPredict.dir/TensorsNet.cpp.i
 .PHONY : TensorsNet.cpp.i
 
@@ -302,6 +304,7 @@ TensorsNet.s: TensorsNet.cpp.s
 TensorsNet.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aip_project_2_buhs.dir/build.make CMakeFiles/aip_project_2_buhs.dir/TensorsNet.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTestsApp.dir/build.make CMakeFiles/runTestsApp.dir/TensorsNet.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTestsMatrix.dir/build.make CMakeFiles/runTestsMatrix.dir/TensorsNet.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runTestsPredict.dir/build.make CMakeFiles/runTestsPredict.dir/TensorsNet.cpp.s
 .PHONY : TensorsNet.cpp.s
 

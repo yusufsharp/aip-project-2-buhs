@@ -50,5 +50,9 @@ int predictDigit(TensorsNet& net, const std::string& filename) {
 
     // Print the predicted digit
     std::cout << "Predicted Digit: " << predicted_digit << std::endl;
+    for (auto & elm : output){
+        std::cout << elm << ' ';
+    }
+    std::cout << '\n';
     return predicted_digit;
 }

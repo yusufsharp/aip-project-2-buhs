@@ -3,6 +3,7 @@
 #include "TensorsNet.h"
 #include "matrix.h"
 #include "predict.h"
+#include "data_reader.h"
 
 // Mock class for TensorsNet
 class MockTensorsNet : public TensorsNet {
@@ -53,3 +54,73 @@ TEST(ReadMatrixFromFileTest, ValidFile) {
         EXPECT_EQ(row.size(), 28);
     }
 }
+TEST(DataNormalizationTest, NormalizeData) {
+    std::vector<std::vector<double>> images = {{0.0, 50.0, 100.0}, {150.0, 200.0, 255.0}};
+    NormalizeData(images);
+
+    // Проверяем, что данные нормализованы в диапазоне от 0 до 1
+    for (const auto& image : images) {
+        for (double pixel : image) {
+            EXPECT_GE(pixel, 0.0);
+            EXPECT_LE(pixel, 1.0);
+        }
+    }
+}
+
+// Тест для функции readLabelFile
+TEST(ReadLabelFileTest, ReadLabelFile) {
+    // Создаем тестовый файл меток
+    std::string filename = "test_labels.dat";
+    std::ofstream file(filename, std::ios::binary);
+    char magicNumber[4] = {0, 0, 0, 1};
+    char numLabelsBytes[4] = {0, 0, 0, 3};
+    unsigned char labels[3] = {1, 2, 3};
+    file.write(magicNumber, 4);
+    file.write(numLabelsBytes, 4);
+    file.write(reinterpret_cast<char*>(labels), 3);
+    file.close();
+
+    std::vector<unsigned char> readLabels = readLabelFile(filename);
+
+    // Проверяем, что метки считаны корректно
+    EXPECT_EQ(readLabels.size(), 3);
+    EXPECT_EQ(readLabels[0], 1);
+    EXPECT_EQ(readLabels[1], 2);
+    EXPECT_EQ(readLabels[2], 3);
+
+    // Удаляем тестовый файл
+    std::remove(filename.c_str());
+}
+
+// Тест для функции readImageFile
+TEST(ReadImageFileTest, ReadImageFile) {
+    // Создаем тестовый файл изображений
+    std::string filename = "test_images.dat";
+    std::ofstream file(filename, std::ios::binary);
+    char magicNumber[4] = {0, 0, 0, 1};
+    char numImagesBytes[4] = {0, 0, 0, 2};
+    char numRowsBytes[4] = {0, 0, 0, 2};
+    char numColsBytes[4] = {0, 0, 0, 2};
+    unsigned char images[8] = {0, 50, 100, 150, 200, 100, 50, 0};
+    file.write(magicNumber, 4);
+    file.write(numImagesBytes, 4);
+    file.write(numRowsBytes, 4);
+    file.write(numColsBytes, 4);
+    file.write(reinterpret_cast<char*>(images), 8);
+    file.close();
+
+    std::vector<std::vector<double>> readImages = readImageFile(filename);
+
+    // Проверяем, что изображения считаны и нормализованы корректно
+    ASSERT_EQ(readImages.size(), 2);
+    for (const auto& image : readImages) {
+        for (double pixel : image) {
+            EXPECT_GE(pixel, 0.0);
+            EXPECT_LE(pixel, 1.0);
+        }
+    }
+
+    // Удаляем тестовый файл
+    std::remove(filename.c_str());
+}
+

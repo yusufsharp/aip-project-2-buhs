@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/runTestsMatrix.dir/TensorsNet.cpp.o"
+  "CMakeFiles/runTestsMatrix.dir/TensorsNet.cpp.o.d"
   "CMakeFiles/runTestsMatrix.dir/matrix.cpp.o"
   "CMakeFiles/runTestsMatrix.dir/matrix.cpp.o.d"
   "CMakeFiles/runTestsMatrix.dir/testMatrix.cpp.o"

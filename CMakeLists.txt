@@ -56,6 +56,8 @@ add_executable(runTestsApp
 add_executable(runTestsMatrix
         matrix.cpp
         matrix.h
+        TensorsNet.cpp
+        TensorsNet.h
         testMatrix.cpp
 )
 add_executable(runTestsPredict

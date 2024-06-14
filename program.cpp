@@ -7,7 +7,7 @@
 
 PaintApp::PaintApp()
         : window(sf::VideoMode(768, 512), "Paint"),
-          isDrawing(false), isEraser(false), lineWidth(55.0f),
+          isDrawing(false), isEraser(false), lineWidth(60.0f),
           net(std::vector<size_t>{784, 128, 10}){
     window.setFramerateLimit(60);
     window.setMouseCursorVisible(false); // Скрыть стандартный курсор мыши
@@ -213,32 +213,31 @@ sf::Image PaintApp::captureCanvas() {
 
 sf::Image PaintApp::resizeImage(const sf::Image& image, unsigned int width, unsigned int height) {
     sf::Image resizedImage;
-    resizedImage.create(width, height, sf::Color::Black);
+    resizedImage.create(20, 20, sf::Color::Black); // Сначала создаем изображение 20x20
 
     sf::Vector2u imageSize = image.getSize();
-    double factorX = static_cast<double>(imageSize.x) / width;
-    double factorY = static_cast<double>(imageSize.y) / height;
+    double factorX = static_cast<double>(imageSize.x) / 20;
+    double factorY = static_cast<double>(imageSize.y) / 20;
 
-    for (unsigned int y = 0; y < height; ++y) {
-        for (unsigned int x = 0; x < width; ++x) {
+    // Сжатие изображения до 20x20
+    for (unsigned int y = 0; y < 20; ++y) {
+        for (unsigned int x = 0; x < 20; ++x) {
             double sum = 0.0;
             unsigned int count = 0;
 
-            // Суммируем значения цвета пикселей внутри каждого нового пикселя
             for (unsigned int j = 0; j < factorY; ++j) {
                 for (unsigned int i = 0; i < factorX; ++i) {
                     unsigned int srcX = x * factorX + i;
                     unsigned int srcY = y * factorY + j;
                     if (srcX < imageSize.x && srcY < imageSize.y) {
                         sf::Color color = image.getPixel(srcX, srcY);
-                        double value = (color.r + color.g + color.b) / (3.0 * 255.0); // Нормализуем значения
+                        double value = (color.r + color.g + color.b) / (3.0 * 255.0);
                         sum += value;
                         ++count;
                     }
                 }
             }
 
-            // Вычисляем среднее значение и устанавливаем его как новый цвет пикселя
             double average = count > 0 ? (sum / count) : 0.0;
             sf::Uint8 pixelValue = static_cast<sf::Uint8>(average * 255.0);
             sf::Color newColor(pixelValue, pixelValue, pixelValue);
@@ -246,7 +245,16 @@ sf::Image PaintApp::resizeImage(const sf::Image& image, unsigned int width, unsi
         }
     }
 
-    return resizedImage;
+    // Создаем изображение 28x28 и добавляем черные пиксели по краям
+    sf::Image finalImage;
+    finalImage.create(28, 28, sf::Color::Black);
+    for (unsigned int y = 0; y < 20; ++y) {
+        for (unsigned int x = 0; x < 20; ++x) {
+            finalImage.setPixel(x + 4, y + 4, resizedImage.getPixel(x, y));
+        }
+    }
+
+    return finalImage;
 }
 
 void PaintApp::saveImageAsText(const sf::Image& image, const std::string& filename) {
