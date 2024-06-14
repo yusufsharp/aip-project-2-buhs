@@ -1,0 +1,97 @@
+\hypertarget{predict_8h}{}\doxysection{predict.\+h File Reference}
+\label{predict_8h}\index{predict.h@{predict.h}}
+
+
+Заголовочный файл для функций, которые обеспечивают предсказание модели.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}Tensors\+Net.\+h\char`\"{}}\newline
+Include dependency graph for predict.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \mbox{\hyperlink{predict_8h_a9c75890a380751b06e69cea5dbbad804}{read\+Matrix\+From\+File}} (const std\+::string \&filename, int rows, int cols)
+\begin{DoxyCompactList}\small\item\em Считывает матрицу из файла. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{predict_8h_aaf9bc7e6d1c2fc132169b92132991874}{flatten\+Matrix}} (const std\+::vector$<$ std\+::vector$<$ double $>$$>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Преобразует матрицу в одномерный вектор. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{predict_8h_a1005e7c5d3daa349b303a90427abe617}{predict\+Digit}} (\mbox{\hyperlink{classTensorsNet}{Tensors\+Net}} \&net, const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Предсказывает цифру на изображении. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Заголовочный файл для функций, которые обеспечивают предсказание модели. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{predict_8h_aaf9bc7e6d1c2fc132169b92132991874}\label{predict_8h_aaf9bc7e6d1c2fc132169b92132991874}} 
+\index{predict.h@{predict.h}!flattenMatrix@{flattenMatrix}}
+\index{flattenMatrix@{flattenMatrix}!predict.h@{predict.h}}
+\doxysubsubsection{\texorpdfstring{flattenMatrix()}{flattenMatrix()}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ flatten\+Matrix (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ double $>$$>$ \&}]{matrix }\end{DoxyParamCaption})}
+
+
+
+Преобразует матрицу в одномерный вектор. 
+
+Эта функция преобразует двумерную матрицу в одномерный вектор, объединяя все строки.
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & Исходная матрица. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Одномерный вектор. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{predict_8h_a1005e7c5d3daa349b303a90427abe617}\label{predict_8h_a1005e7c5d3daa349b303a90427abe617}} 
+\index{predict.h@{predict.h}!predictDigit@{predictDigit}}
+\index{predictDigit@{predictDigit}!predict.h@{predict.h}}
+\doxysubsubsection{\texorpdfstring{predictDigit()}{predictDigit()}}
+{\footnotesize\ttfamily int predict\+Digit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTensorsNet}{Tensors\+Net}} \&}]{net,  }\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Предсказывает цифру на изображении. 
+
+Эта функция считывает изображение из файла, преобразует его в одномерный вектор и передает его в нейронную сеть для предсказания цифры.
+
+
+\begin{DoxyParams}{Parameters}
+{\em net} & Объект нейронной сети \mbox{\hyperlink{classTensorsNet}{Tensors\+Net}}. \\
+\hline
+{\em filename} & Путь к файлу изображения. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Предсказанная цифра. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{predict_8h_a9c75890a380751b06e69cea5dbbad804}\label{predict_8h_a9c75890a380751b06e69cea5dbbad804}} 
+\index{predict.h@{predict.h}!readMatrixFromFile@{readMatrixFromFile}}
+\index{readMatrixFromFile@{readMatrixFromFile}!predict.h@{predict.h}}
+\doxysubsubsection{\texorpdfstring{readMatrixFromFile()}{readMatrixFromFile()}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$double$>$ $>$ read\+Matrix\+From\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{int}]{rows,  }\item[{int}]{cols }\end{DoxyParamCaption})}
+
+
+
+Считывает матрицу из файла. 
+
+Эта функция открывает файл и считывает данные в матрицу размером rows x cols.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Путь к файлу. \\
+\hline
+{\em rows} & Количество строк. \\
+\hline
+{\em cols} & Количество столбцов. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Считанная матрица. 
+\end{DoxyReturn}

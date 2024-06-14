@@ -1,6 +1,10 @@
 //
 // Created by pc on 12.06.2024.
 //
+/**
+ * @file predict.h
+ * @brief Заголовочный файл для функций, которые обеспечивают предсказание модели.
+ */
 
 #ifndef AIP_PROJECT_2_BUHS_PREDICT_H
 #define AIP_PROJECT_2_BUHS_PREDICT_H

@@ -13,8 +13,6 @@ include_directories(${SFML_INCLUDE_DIR})
 # Добавление исполняемого файла проекта
 add_executable(aip_project_2_buhs
         main.cpp
-        neural_net.cpp
-        neural_net.h
         program.cpp
         program.h
         data_reader.cpp
@@ -38,8 +36,6 @@ include_directories(external/googletest-main/googlemock/include)
 
 # Добавление исполняемого файла для тестов
 add_executable(runTestsApp
-        neural_net.cpp
-        neural_net.h
         program.cpp
         program.h
         data_reader.cpp
@@ -61,8 +57,6 @@ add_executable(runTestsMatrix
         testMatrix.cpp
 )
 add_executable(runTestsPredict
-        neural_net.cpp
-        neural_net.h
         program.cpp
         program.h
         data_reader.cpp

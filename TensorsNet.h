@@ -1,6 +1,10 @@
 //
 // Created by zxces on 26.03.2024.
 //
+/**
+ * @file TensorsNet.h
+ * @brief Заголовочный файл для класса модели нейросети
+ */
 #pragma once
 
 #include "matrix.h"

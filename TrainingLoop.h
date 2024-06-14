@@ -1,3 +1,7 @@
+/**
+ * @file TrainingLoop.h
+ * @brief Заголовочный файл для функций, обучающих нейросеть.
+ */
 #ifndef TRAINING_LOOP_H
 #define TRAINING_LOOP_H
 

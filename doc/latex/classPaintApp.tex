@@ -1,0 +1,464 @@
+\hypertarget{classPaintApp}{}\doxysection{Paint\+App Class Reference}
+\label{classPaintApp}\index{PaintApp@{PaintApp}}
+
+
+Класс, реализующий приложение для рисования и распознавания цифр.  
+
+
+
+
+{\ttfamily \#include $<$program.\+h$>$}
+
+
+
+Collaboration diagram for Paint\+App\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPaintApp_aa6c48325695767ba5af0574c2af66280}{Paint\+App}} ()
+\begin{DoxyCompactList}\small\item\em Конструктор класса \mbox{\hyperlink{classPaintApp}{Paint\+App}}. Инициализирует все необходимые компоненты приложения. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPaintApp_a2df219662de075052f75720540cfd380}{run}} ()
+\begin{DoxyCompactList}\small\item\em Запускает основной цикл приложения. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPaintApp_a94e8ac1b64c0255c8a5a68528e3e7714}{toggle\+Tool}} ()
+\begin{DoxyCompactList}\small\item\em Переключает инструмент между карандашом и ластиком. \end{DoxyCompactList}\item 
+sf\+::\+Image \mbox{\hyperlink{classPaintApp_aa00d0a8ff343e92ffceebb3fcfaa989f}{capture\+Canvas}} ()
+\begin{DoxyCompactList}\small\item\em Захватывает текущее состояние холста в виде изображения. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPaintApp_ab75b2501b16f597b8a0c0929efe6b976}{clear\+Canvas}} ()
+\begin{DoxyCompactList}\small\item\em Очищает холст, устанавливая все пиксели в черный цвет. \end{DoxyCompactList}\item 
+sf\+::\+Image \mbox{\hyperlink{classPaintApp_a0270ac983183bc9956a2556f68c05b43}{resize\+Image}} (const sf\+::\+Image \&image, unsigned int width, unsigned int height)
+\begin{DoxyCompactList}\small\item\em Изменяет размер изображения до указанных размеров. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPaintApp_a155e2f6f417769545383ab1e04ef9de9}{save\+Image\+As\+Text}} (const sf\+::\+Image \&image, const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Сохраняет изображение в текстовый файл. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPaintApp_a1f3b5de77ecc253c2ee7183900ddf1ec}{handle\+Mouse\+Input}} (sf\+::\+Vector2i position, bool is\+Pressed)
+\begin{DoxyCompactList}\small\item\em Обрабатывает ввод от мыши. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPaintApp_a63e16d86192ce59c1a27691c01891442}{handle\+Button\+Click}} (sf\+::\+Vector2i position)
+\begin{DoxyCompactList}\small\item\em Обрабатывает клики по кнопкам. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPaintApp_ab68c2e3cc18cd67e3c4c251d3d2a926c}{update}} ()
+\begin{DoxyCompactList}\small\item\em Обновляет состояние приложения. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPaintApp_a312cdd435f43fa072a0cfd7e74827c88}{process\+Events}} ()
+\begin{DoxyCompactList}\small\item\em Обрабатывает события окна. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classPaintApp_a072e564c9d86496439f664e33c7ebe99}{is\+Eraser}}
+\begin{DoxyCompactList}\small\item\em Флаг, проверяющий включение ластика. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPaintApp_af530b645c246f372c887acc4506f3fc2}{is\+Drawing}}
+\begin{DoxyCompactList}\small\item\em Флаг, указывающий, находится ли приложение в режиме рисования. \end{DoxyCompactList}\item 
+sf\+::\+Render\+Window \mbox{\hyperlink{classPaintApp_a9e1520055b883197ced80fa37b8c6286}{window}}
+\begin{DoxyCompactList}\small\item\em Окно приложения. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classPaintApp_ab736097ca38f3d7f193107f4a9fe955c}{render}} ()
+\begin{DoxyCompactList}\small\item\em Отрисовывает все элементы приложения. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPaintApp_abe6c968ffe0c588be4d5ec32ec92aed7}{draw\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Отрисовывает пользовательский интерфейс. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Render\+Texture \mbox{\hyperlink{classPaintApp_a9aa84d95e6ac3452d604c7e29754eb5d}{canvas}}
+\begin{DoxyCompactList}\small\item\em Текстура холста для рисования. \end{DoxyCompactList}\item 
+sf\+::\+Sprite \mbox{\hyperlink{classPaintApp_a08230e706330ed4bb32d899ea6c3f656}{canvas\+Sprite}}
+\begin{DoxyCompactList}\small\item\em Спрайт для отображения текстуры холста. \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{classPaintApp_aba34eb0bdb773f0fcf8c4888852b8c45}{background}}
+\begin{DoxyCompactList}\small\item\em Фон для области с текстом. \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{classPaintApp_adce557119cfe24bc3d117c9728b297b4}{drawing\+Area}}
+\begin{DoxyCompactList}\small\item\em Область для рисования. \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{classPaintApp_ac0600475e2bdfa73ddde5760beeb4dc1}{save\+Button}}
+\begin{DoxyCompactList}\small\item\em Кнопка сохранения изображения. \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{classPaintApp_ab7aacb99acf6296c42f29aa7c4e67b0a}{clear\+Button}}
+\begin{DoxyCompactList}\small\item\em Кнопка очистки холста. \end{DoxyCompactList}\item 
+sf\+::\+Font \mbox{\hyperlink{classPaintApp_af84d80192b62817f55f578195cef67e9}{font}}
+\begin{DoxyCompactList}\small\item\em Шрифт для текста. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{classPaintApp_a828d0347e9c792a6dab29c35e0e6548f}{instructions}}
+\begin{DoxyCompactList}\small\item\em Текст инструкций. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{classPaintApp_a9fce68ec1d23cdafca0f5063884fa9b7}{save\+Button\+Text}}
+\begin{DoxyCompactList}\small\item\em Текст на кнопке сохранения. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{classPaintApp_afd4116f55f55608552eb287a3de22333}{clear\+Button\+Text}}
+\begin{DoxyCompactList}\small\item\em Текст на кнопке очистки. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{classPaintApp_a5d1aa06b252b80b2acbd95f51f2511e3}{result\+Text}}
+\begin{DoxyCompactList}\small\item\em Текст для вывода результата распознавания. \end{DoxyCompactList}\item 
+sf\+::\+Vector2i \mbox{\hyperlink{classPaintApp_ad8d246f47361bfb68d45df5b29a2b203}{previous\+Mouse\+Position}}
+\begin{DoxyCompactList}\small\item\em Предыдущая позиция курсора мыши. \end{DoxyCompactList}\item 
+sf\+::\+Texture \mbox{\hyperlink{classPaintApp_a0b8ef8f7a0d5ee8d5834b84638a9427e}{pencil\+Texture}}
+\begin{DoxyCompactList}\small\item\em Текстура для спрайта карандаша. \end{DoxyCompactList}\item 
+sf\+::\+Sprite \mbox{\hyperlink{classPaintApp_ae023ae7c5eb81375d9c2c6d6ad9ab289}{pencil\+Sprite}}
+\begin{DoxyCompactList}\small\item\em Спрайт карандаша. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPaintApp_a529b3459006cbf63a101cfada3fb4410}{line\+Width}}
+\begin{DoxyCompactList}\small\item\em Ширина линии для рисования. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTensorsNet}{Tensors\+Net}} \mbox{\hyperlink{classPaintApp_a8baa128887ef142dec0a15edffd3374e}{net}}
+\begin{DoxyCompactList}\small\item\em Нейронная сеть для предсказаний. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Класс, реализующий приложение для рисования и распознавания цифр. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPaintApp_aa6c48325695767ba5af0574c2af66280}\label{classPaintApp_aa6c48325695767ba5af0574c2af66280}} 
+\index{PaintApp@{PaintApp}!PaintApp@{PaintApp}}
+\index{PaintApp@{PaintApp}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{PaintApp()}{PaintApp()}}
+{\footnotesize\ttfamily Paint\+App\+::\+Paint\+App (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Конструктор класса \mbox{\hyperlink{classPaintApp}{Paint\+App}}. Инициализирует все необходимые компоненты приложения. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPaintApp_aa00d0a8ff343e92ffceebb3fcfaa989f}\label{classPaintApp_aa00d0a8ff343e92ffceebb3fcfaa989f}} 
+\index{PaintApp@{PaintApp}!captureCanvas@{captureCanvas}}
+\index{captureCanvas@{captureCanvas}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{captureCanvas()}{captureCanvas()}}
+{\footnotesize\ttfamily sf\+::\+Image Paint\+App\+::capture\+Canvas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Захватывает текущее состояние холста в виде изображения. 
+
+\begin{DoxyReturn}{Returns}
+sf\+::\+Image -\/ изображение текущего состояния холста. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPaintApp_ab75b2501b16f597b8a0c0929efe6b976}\label{classPaintApp_ab75b2501b16f597b8a0c0929efe6b976}} 
+\index{PaintApp@{PaintApp}!clearCanvas@{clearCanvas}}
+\index{clearCanvas@{clearCanvas}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{clearCanvas()}{clearCanvas()}}
+{\footnotesize\ttfamily void Paint\+App\+::clear\+Canvas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Очищает холст, устанавливая все пиксели в черный цвет. 
+
+\mbox{\Hypertarget{classPaintApp_abe6c968ffe0c588be4d5ec32ec92aed7}\label{classPaintApp_abe6c968ffe0c588be4d5ec32ec92aed7}} 
+\index{PaintApp@{PaintApp}!drawUI@{drawUI}}
+\index{drawUI@{drawUI}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{drawUI()}{drawUI()}}
+{\footnotesize\ttfamily void Paint\+App\+::draw\+UI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Отрисовывает пользовательский интерфейс. 
+
+\mbox{\Hypertarget{classPaintApp_a63e16d86192ce59c1a27691c01891442}\label{classPaintApp_a63e16d86192ce59c1a27691c01891442}} 
+\index{PaintApp@{PaintApp}!handleButtonClick@{handleButtonClick}}
+\index{handleButtonClick@{handleButtonClick}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{handleButtonClick()}{handleButtonClick()}}
+{\footnotesize\ttfamily void Paint\+App\+::handle\+Button\+Click (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{position }\end{DoxyParamCaption})}
+
+
+
+Обрабатывает клики по кнопкам. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Позиция курсора мыши. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPaintApp_a1f3b5de77ecc253c2ee7183900ddf1ec}\label{classPaintApp_a1f3b5de77ecc253c2ee7183900ddf1ec}} 
+\index{PaintApp@{PaintApp}!handleMouseInput@{handleMouseInput}}
+\index{handleMouseInput@{handleMouseInput}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{handleMouseInput()}{handleMouseInput()}}
+{\footnotesize\ttfamily void Paint\+App\+::handle\+Mouse\+Input (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{position,  }\item[{bool}]{is\+Pressed }\end{DoxyParamCaption})}
+
+
+
+Обрабатывает ввод от мыши. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Позиция курсора мыши. \\
+\hline
+{\em is\+Pressed} & Флаг, указывающий, нажата ли кнопка мыши. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPaintApp_a312cdd435f43fa072a0cfd7e74827c88}\label{classPaintApp_a312cdd435f43fa072a0cfd7e74827c88}} 
+\index{PaintApp@{PaintApp}!processEvents@{processEvents}}
+\index{processEvents@{processEvents}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{processEvents()}{processEvents()}}
+{\footnotesize\ttfamily void Paint\+App\+::process\+Events (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Обрабатывает события окна. 
+
+\mbox{\Hypertarget{classPaintApp_ab736097ca38f3d7f193107f4a9fe955c}\label{classPaintApp_ab736097ca38f3d7f193107f4a9fe955c}} 
+\index{PaintApp@{PaintApp}!render@{render}}
+\index{render@{render}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Paint\+App\+::render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Отрисовывает все элементы приложения. 
+
+\mbox{\Hypertarget{classPaintApp_a0270ac983183bc9956a2556f68c05b43}\label{classPaintApp_a0270ac983183bc9956a2556f68c05b43}} 
+\index{PaintApp@{PaintApp}!resizeImage@{resizeImage}}
+\index{resizeImage@{resizeImage}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{resizeImage()}{resizeImage()}}
+{\footnotesize\ttfamily sf\+::\+Image Paint\+App\+::resize\+Image (\begin{DoxyParamCaption}\item[{const sf\+::\+Image \&}]{image,  }\item[{unsigned int}]{width,  }\item[{unsigned int}]{height }\end{DoxyParamCaption})}
+
+
+
+Изменяет размер изображения до указанных размеров. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Исходное изображение. \\
+\hline
+{\em width} & Новый ширина изображения. \\
+\hline
+{\em height} & Новый высота изображения. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+sf\+::\+Image -\/ изображение с измененными размерами. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPaintApp_a2df219662de075052f75720540cfd380}\label{classPaintApp_a2df219662de075052f75720540cfd380}} 
+\index{PaintApp@{PaintApp}!run@{run}}
+\index{run@{run}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Paint\+App\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Запускает основной цикл приложения. 
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{classPaintApp_a155e2f6f417769545383ab1e04ef9de9}\label{classPaintApp_a155e2f6f417769545383ab1e04ef9de9}} 
+\index{PaintApp@{PaintApp}!saveImageAsText@{saveImageAsText}}
+\index{saveImageAsText@{saveImageAsText}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{saveImageAsText()}{saveImageAsText()}}
+{\footnotesize\ttfamily void Paint\+App\+::save\+Image\+As\+Text (\begin{DoxyParamCaption}\item[{const sf\+::\+Image \&}]{image,  }\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Сохраняет изображение в текстовый файл. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Изображение для сохранения. \\
+\hline
+{\em filename} & Имя файла, в который будет сохранено изображение. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPaintApp_a94e8ac1b64c0255c8a5a68528e3e7714}\label{classPaintApp_a94e8ac1b64c0255c8a5a68528e3e7714}} 
+\index{PaintApp@{PaintApp}!toggleTool@{toggleTool}}
+\index{toggleTool@{toggleTool}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{toggleTool()}{toggleTool()}}
+{\footnotesize\ttfamily void Paint\+App\+::toggle\+Tool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Переключает инструмент между карандашом и ластиком. 
+
+\mbox{\Hypertarget{classPaintApp_ab68c2e3cc18cd67e3c4c251d3d2a926c}\label{classPaintApp_ab68c2e3cc18cd67e3c4c251d3d2a926c}} 
+\index{PaintApp@{PaintApp}!update@{update}}
+\index{update@{update}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Paint\+App\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Обновляет состояние приложения. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classPaintApp_aba34eb0bdb773f0fcf8c4888852b8c45}\label{classPaintApp_aba34eb0bdb773f0fcf8c4888852b8c45}} 
+\index{PaintApp@{PaintApp}!background@{background}}
+\index{background@{background}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{background}{background}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape Paint\+App\+::background\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Фон для области с текстом. 
+
+\mbox{\Hypertarget{classPaintApp_a9aa84d95e6ac3452d604c7e29754eb5d}\label{classPaintApp_a9aa84d95e6ac3452d604c7e29754eb5d}} 
+\index{PaintApp@{PaintApp}!canvas@{canvas}}
+\index{canvas@{canvas}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{canvas}{canvas}}
+{\footnotesize\ttfamily sf\+::\+Render\+Texture Paint\+App\+::canvas\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Текстура холста для рисования. 
+
+\mbox{\Hypertarget{classPaintApp_a08230e706330ed4bb32d899ea6c3f656}\label{classPaintApp_a08230e706330ed4bb32d899ea6c3f656}} 
+\index{PaintApp@{PaintApp}!canvasSprite@{canvasSprite}}
+\index{canvasSprite@{canvasSprite}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{canvasSprite}{canvasSprite}}
+{\footnotesize\ttfamily sf\+::\+Sprite Paint\+App\+::canvas\+Sprite\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Спрайт для отображения текстуры холста. 
+
+\mbox{\Hypertarget{classPaintApp_ab7aacb99acf6296c42f29aa7c4e67b0a}\label{classPaintApp_ab7aacb99acf6296c42f29aa7c4e67b0a}} 
+\index{PaintApp@{PaintApp}!clearButton@{clearButton}}
+\index{clearButton@{clearButton}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{clearButton}{clearButton}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape Paint\+App\+::clear\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Кнопка очистки холста. 
+
+\mbox{\Hypertarget{classPaintApp_afd4116f55f55608552eb287a3de22333}\label{classPaintApp_afd4116f55f55608552eb287a3de22333}} 
+\index{PaintApp@{PaintApp}!clearButtonText@{clearButtonText}}
+\index{clearButtonText@{clearButtonText}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{clearButtonText}{clearButtonText}}
+{\footnotesize\ttfamily sf\+::\+Text Paint\+App\+::clear\+Button\+Text\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Текст на кнопке очистки. 
+
+\mbox{\Hypertarget{classPaintApp_adce557119cfe24bc3d117c9728b297b4}\label{classPaintApp_adce557119cfe24bc3d117c9728b297b4}} 
+\index{PaintApp@{PaintApp}!drawingArea@{drawingArea}}
+\index{drawingArea@{drawingArea}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{drawingArea}{drawingArea}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape Paint\+App\+::drawing\+Area\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Область для рисования. 
+
+\mbox{\Hypertarget{classPaintApp_af84d80192b62817f55f578195cef67e9}\label{classPaintApp_af84d80192b62817f55f578195cef67e9}} 
+\index{PaintApp@{PaintApp}!font@{font}}
+\index{font@{font}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{font}{font}}
+{\footnotesize\ttfamily sf\+::\+Font Paint\+App\+::font\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Шрифт для текста. 
+
+\mbox{\Hypertarget{classPaintApp_a828d0347e9c792a6dab29c35e0e6548f}\label{classPaintApp_a828d0347e9c792a6dab29c35e0e6548f}} 
+\index{PaintApp@{PaintApp}!instructions@{instructions}}
+\index{instructions@{instructions}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{instructions}{instructions}}
+{\footnotesize\ttfamily sf\+::\+Text Paint\+App\+::instructions\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Текст инструкций. 
+
+\mbox{\Hypertarget{classPaintApp_af530b645c246f372c887acc4506f3fc2}\label{classPaintApp_af530b645c246f372c887acc4506f3fc2}} 
+\index{PaintApp@{PaintApp}!isDrawing@{isDrawing}}
+\index{isDrawing@{isDrawing}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{isDrawing}{isDrawing}}
+{\footnotesize\ttfamily bool Paint\+App\+::is\+Drawing}
+
+
+
+Флаг, указывающий, находится ли приложение в режиме рисования. 
+
+\mbox{\Hypertarget{classPaintApp_a072e564c9d86496439f664e33c7ebe99}\label{classPaintApp_a072e564c9d86496439f664e33c7ebe99}} 
+\index{PaintApp@{PaintApp}!isEraser@{isEraser}}
+\index{isEraser@{isEraser}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{isEraser}{isEraser}}
+{\footnotesize\ttfamily bool Paint\+App\+::is\+Eraser}
+
+
+
+Флаг, проверяющий включение ластика. 
+
+\mbox{\Hypertarget{classPaintApp_a529b3459006cbf63a101cfada3fb4410}\label{classPaintApp_a529b3459006cbf63a101cfada3fb4410}} 
+\index{PaintApp@{PaintApp}!lineWidth@{lineWidth}}
+\index{lineWidth@{lineWidth}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{lineWidth}{lineWidth}}
+{\footnotesize\ttfamily float Paint\+App\+::line\+Width\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Ширина линии для рисования. 
+
+\mbox{\Hypertarget{classPaintApp_a8baa128887ef142dec0a15edffd3374e}\label{classPaintApp_a8baa128887ef142dec0a15edffd3374e}} 
+\index{PaintApp@{PaintApp}!net@{net}}
+\index{net@{net}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{net}{net}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTensorsNet}{Tensors\+Net}} Paint\+App\+::net\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Нейронная сеть для предсказаний. 
+
+\mbox{\Hypertarget{classPaintApp_ae023ae7c5eb81375d9c2c6d6ad9ab289}\label{classPaintApp_ae023ae7c5eb81375d9c2c6d6ad9ab289}} 
+\index{PaintApp@{PaintApp}!pencilSprite@{pencilSprite}}
+\index{pencilSprite@{pencilSprite}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{pencilSprite}{pencilSprite}}
+{\footnotesize\ttfamily sf\+::\+Sprite Paint\+App\+::pencil\+Sprite\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Спрайт карандаша. 
+
+\mbox{\Hypertarget{classPaintApp_a0b8ef8f7a0d5ee8d5834b84638a9427e}\label{classPaintApp_a0b8ef8f7a0d5ee8d5834b84638a9427e}} 
+\index{PaintApp@{PaintApp}!pencilTexture@{pencilTexture}}
+\index{pencilTexture@{pencilTexture}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{pencilTexture}{pencilTexture}}
+{\footnotesize\ttfamily sf\+::\+Texture Paint\+App\+::pencil\+Texture\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Текстура для спрайта карандаша. 
+
+\mbox{\Hypertarget{classPaintApp_ad8d246f47361bfb68d45df5b29a2b203}\label{classPaintApp_ad8d246f47361bfb68d45df5b29a2b203}} 
+\index{PaintApp@{PaintApp}!previousMousePosition@{previousMousePosition}}
+\index{previousMousePosition@{previousMousePosition}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{previousMousePosition}{previousMousePosition}}
+{\footnotesize\ttfamily sf\+::\+Vector2i Paint\+App\+::previous\+Mouse\+Position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Предыдущая позиция курсора мыши. 
+
+\mbox{\Hypertarget{classPaintApp_a5d1aa06b252b80b2acbd95f51f2511e3}\label{classPaintApp_a5d1aa06b252b80b2acbd95f51f2511e3}} 
+\index{PaintApp@{PaintApp}!resultText@{resultText}}
+\index{resultText@{resultText}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{resultText}{resultText}}
+{\footnotesize\ttfamily sf\+::\+Text Paint\+App\+::result\+Text\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Текст для вывода результата распознавания. 
+
+\mbox{\Hypertarget{classPaintApp_ac0600475e2bdfa73ddde5760beeb4dc1}\label{classPaintApp_ac0600475e2bdfa73ddde5760beeb4dc1}} 
+\index{PaintApp@{PaintApp}!saveButton@{saveButton}}
+\index{saveButton@{saveButton}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{saveButton}{saveButton}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape Paint\+App\+::save\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Кнопка сохранения изображения. 
+
+\mbox{\Hypertarget{classPaintApp_a9fce68ec1d23cdafca0f5063884fa9b7}\label{classPaintApp_a9fce68ec1d23cdafca0f5063884fa9b7}} 
+\index{PaintApp@{PaintApp}!saveButtonText@{saveButtonText}}
+\index{saveButtonText@{saveButtonText}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{saveButtonText}{saveButtonText}}
+{\footnotesize\ttfamily sf\+::\+Text Paint\+App\+::save\+Button\+Text\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Текст на кнопке сохранения. 
+
+\mbox{\Hypertarget{classPaintApp_a9e1520055b883197ced80fa37b8c6286}\label{classPaintApp_a9e1520055b883197ced80fa37b8c6286}} 
+\index{PaintApp@{PaintApp}!window@{window}}
+\index{window@{window}!PaintApp@{PaintApp}}
+\doxysubsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily sf\+::\+Render\+Window Paint\+App\+::window}
+
+
+
+Окно приложения. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{program_8h}{program.\+h}}\end{DoxyCompactItemize}

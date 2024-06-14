@@ -1,6 +1,10 @@
 //
 // Created by zxces on 26.03.2024.
 //
+/**
+ * @file matrix.h
+ * @brief Заголовочный файл для класса Matrix.
+ */
 #pragma once
 #ifndef AIP_PROJECT_2_BUHS_MATRIX_H
 #define AIP_PROJECT_2_BUHS_MATRIX_H
